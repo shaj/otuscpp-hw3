@@ -3,7 +3,7 @@
 #include <vector>
 #include <map>
 
-
+#include "mylist.h"
 
 long double fact(int N)
 {
@@ -106,8 +106,8 @@ int main (int, char *[])
 		std::cout << it.first << " " << it.second << std::endl;
 	}
 
-/*
-	auto m3 = my_list<int>{};
+
+	auto m3 = mylist<int>{};
 	for(size_t i=0; i<10; i++)
 	{
 		m3.append(i);
@@ -116,7 +116,7 @@ int main (int, char *[])
 	{
 		std::cout << *it << std::endl;
 	}
-*/
+
 
 	return 0;
 }
