@@ -1,7 +1,7 @@
 
 
 
-template< typename T >
+template< typename T, typename Allocator=std::allocator<T>() >
 class List {
 private:
     // Объявление структуры узла для использования в классе Iterator
@@ -10,12 +10,60 @@ private:
 public:
     // Класс итератора односвязного списка
     class Iterator {
-        // Пока что опускаем
-        ...
+    public:
+        Iterator( Node* node ) : m_node( node ) { }
+
+        // Проверка на равенство
+        bool operator==( const Iterator& other ) const {
+            if( this == &other ) {
+                return true;
+            }
+            return m_node == other.m_node;
+        }
+
+        // Проверка на неравенство
+        bool operator!=( const Iterator& other ) const {
+            return !operator==( other );
+        }
+
+        // Получение значения текущего узла
+        T operator*() const {
+            if( m_node ) {
+                return m_node->m_t;
+            } // Иначе достигнут конец списка. Уместно возбудить исключение
+            return T();
+        }
+
+        // Переход к следующему узлу
+        void operator++() {
+            if( m_node ) {
+                m_node = m_node->m_next;
+            } // Иначе достигнут конец списка. Уместно возбудить исключение
+        }
+
+    private:
+        Node* m_node;
     };
 
 public:
     List();
+
+    _List_impl() _GLIBCXX_NOEXCEPT
+    : _Node_alloc_type(), _M_node()
+    { }
+
+    _List_impl(const _Node_alloc_type& __a) _GLIBCXX_NOEXCEPT
+    : _Node_alloc_type(__a), _M_node()
+    { }
+
+#if __cplusplus >= 201103L
+    _List_impl(_Node_alloc_type&& __a) noexcept
+    : _Node_alloc_type(std::move(__a)), _M_node()
+    { }
+#endif
+
+
+
 
     ~List();
 
@@ -96,41 +144,6 @@ List< T >::~List() {
 }
 
 
-class Iterator {
-public:
-    Iterator( Node* node ) : m_node( node ) { }
-
-    // Проверка на равенство
-    bool operator==( const Iterator& other ) const {
-        if( this == &other ) {
-            return true;
-        }
-        return m_node == other.m_node;
-    }
-
-    // Проверка на неравенство
-    bool operator!=( const Iterator& other ) const {
-        return !operator==( other );
-    }
-
-    // Получение значения текущего узла
-    T operator*() const {
-        if( m_node ) {
-            return m_node->m_t;
-        } // Иначе достигнут конец списка. Уместно возбудить исключение
-        return T();
-    }
-
-    // Переход к следующему узлу
-    void operator++() {
-        if( m_node ) {
-            m_node = m_node->m_next;
-        } // Иначе достигнут конец списка. Уместно возбудить исключение
-    }
-
-private:
-    Node* m_node;
-};
 
 
 template< typename T >
