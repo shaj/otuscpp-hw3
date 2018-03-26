@@ -66,18 +66,29 @@ int main (int, char *[])
 		std::cout << it.first << " " << it.second << std::endl;
 	}
 
-/*
-	auto m3 = mylist<int>{};
+
+	// auto m3 = mylist<int>{};
+	// for(size_t i=0; i<10; i++)
+	// {
+	// 	m3.append(i);
+	// }
+	// for(auto it: m3)
+	// {
+	// 	std::cout << *it << std::endl;
+	// }
+
+
+	auto m4 = mylist<int, logging_allocator<int>>{};
 	for(size_t i=0; i<10; i++)
 	{
-		m3.append(i);
+		m4.append(i);
 	}
-	for(auto it: m3)
+	for(auto it: m4)
 	{
-		std::cout << *it << std::endl;
+		std::cout << it << std::endl;
 	}
 
-*/
+
 	return 0;
 }
 

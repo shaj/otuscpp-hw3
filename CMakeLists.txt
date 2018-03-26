@@ -4,20 +4,18 @@ project(allocator VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 
-configure_file("version.h.in" "version.h")
-include_directories("${PROJECT_BINARY_DIR}")
-
 add_executable(allocator main.cpp)
 
 #add_library(helloworld lib.cpp)
-
-#add_executable(test_main_cli test_main.cpp)
 
 set_target_properties(allocator PROPERTIES
   CXX_STANDARD 14
   CXX_STANDARD_REQUIRED ON
   COMPILE_OPTIONS -Wpedantic -Wall -Wextra
 )
+
+
+#add_executable(test_main_cli test_main.cpp)
 
 #set_target_properties(test_main_cli PROPERTIES
 #  COMPILE_DEFINITIONS BOOST_TEST_DYN_LINK
@@ -30,6 +28,11 @@ set_target_properties(allocator PROPERTIES
 #  ${Boost_LIBRARIES}
 #  helloworld
 #)
+
+
+configure_file("${PROJECT_SOURCE_DIR}/version.h.in" "${PROJECT_BINARY_DIR}/version.h")
+target_include_directories(allocator PUBLIC "${PROJECT_BINARY_DIR}")
+
 
 install(TARGETS allocator RUNTIME DESTINATION bin)
 
