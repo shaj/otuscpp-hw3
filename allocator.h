@@ -1,5 +1,5 @@
 
-
+#include <list>
 
 
 template<typename T>
@@ -16,6 +16,36 @@ struct logging_allocator
 	{
 		using other = logging_allocator<U>;
 	};
+
+	class _bs
+	{
+		int value;
+	public:
+		_bs():value(1){}
+		~_bs(){}
+		int & operator=(const int &i)
+		{
+			if((i>0) && (i<20 /*max i*/))
+			{
+				value = i;
+			}
+		}
+		operator int () {return value;}
+	} block_size;
+
+
+	std::list<T*> alloc_mem;
+	int free_ptr;
+
+	logging_allocator(){}
+	~logging_allocator()
+	{
+		for(auto it: alloc_mem)
+		{
+			std::free(it);
+		}
+	}
+
 
 	T *allocate(std::size_t n)
 	{

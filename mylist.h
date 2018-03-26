@@ -8,13 +8,10 @@ private:
     // Структура узла односвязного списка
     template<typename _T>
     struct Node {
-        Node() : m_next( NULL ) { }
-
-        Node( const _T& t ) : m_t( t ), m_next( NULL ) { }
-
+        Node() : m_next( nullptr ) { }
+        Node( const _T& t ) : m_t( t ), m_next( nullptr ) { }
         // Значение узла
         _T m_t;
-        
         // Указатель на следующий узел
         Node<_T>* m_next;
     };
@@ -28,6 +25,7 @@ private:
     _Node_alloc_type alloc;
     // Голова односвязного списка
     Node<T>* m_head;
+    Node<T>* m_last;
 
 public:
     // Класс итератора односвязного списка
@@ -77,18 +75,16 @@ public:
 
 public:
     mylist() noexcept
-    : alloc(), m_head()
+    : alloc(), m_head(), m_last()
     { }
 
-    mylist(const _Node_alloc_type& __a) noexcept
-    : alloc(__a), m_head()
-    { }
+    // mylist(const _Node_alloc_type& __a) noexcept
+    // : alloc(__a), m_head(), m_last()
+    // { }
 
-    mylist(_Node_alloc_type&& __a) noexcept
-    : alloc(std::move(__a)), m_head()
-    { }
-
-
+    // mylist(_Node_alloc_type&& __a) noexcept
+    // : alloc(std::move(__a)), m_head(), m_last()
+    // { }
 
 
     ~mylist()
@@ -106,26 +102,32 @@ public:
         // Не забудем проверить, что память удалось выделить
         if( Node<T>* node = alloc.allocate(sizeof(_Node_alloc_type))) 
         {
-            node->m_t = t;
-            // Новый узел привязывается к старому головному элементу
-            node->m_next = m_head;
-            // Новый узел сам становится головным элементом
-            m_head = node;
+            // node->m_t = t;
+            alloc.construct(node, t);
+            node->m_next = nullptr;
+            if(m_head == nullptr)
+            {
+                m_head = node;
+                m_last = node;
+            }
+            else
+            {
+                m_last->m_next = node;
+                m_last = node;
+            }
         }
     }
     
-    // Удаление последнего добавленного узла из списка
+    // Удаление первого узла из списка
     void remove()
     {
-        if( m_head ) 
+        if(m_head) 
         { // Если список не пуст:
             // Сохраняем указатель на второй узел, который станет новым головным элементом
             Node<T>* newHead = m_head->m_next;
-
             // Освобождаем память, выделенную для удаляемого головного элемента
+            alloc.destroy(m_head);
             alloc.deallocate(m_head, sizeof(_Node_alloc_type));
-            // delete m_head;
-
             // Назначаем новый головной элемент
             m_head = newHead;
         } // Иначе могли бы возбудить исключение
@@ -141,32 +143,13 @@ public:
         return Iterator<T>( m_head );
     }
 
-    
     // Получить итератор на конец списка
     Iterator<T> end() const
     {
         // ... и до упора, т.е. NULL
-        return Iterator<T>( NULL );
+        return Iterator<T>( nullptr );
     }
 
-    // Получить размер списка
-    size_t size() const
-    {
-        size_t s = 0;
-        for( Iterator<T> it = begin(); it != end(); ++it ) {
-            ++s;
-        }
-        /* 
-        Но можно и без итераторов
-        for( Node* n = m_head; n != NULL; n = n->m_next ) {
-            ++s;
-        }
-        */
-
-        return s;
-    }
-
-private:
 };
 
 
