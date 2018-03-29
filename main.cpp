@@ -6,7 +6,7 @@
 #include <vector>
 #include <map>
 
-#include "allocator.h"
+#include "allocator_p.h"
 #include "mylist.h"
 
 long double fact(int N)
@@ -56,7 +56,11 @@ int main (int, char *[])
 		std::cout << it.first << " " << it.second << std::endl;
 	}
 
-	auto m2 = std::map<int, long double, std::less<int>, logging_allocator<std::pair<const int, long double>>> {};
+	auto m2 = std::map<int, long double, std::less<int>,
+			logging_allocator<std::pair<const int, long double>>> {};
+
+	// m2.get_allocator()->set_block_size(3);
+
 	for(size_t i=0; i<10; ++i)
 	{
 		m2[i] = fact(i);

@@ -100,7 +100,7 @@ public:
     {
         // Создаем новый узел для значения
         // Не забудем проверить, что память удалось выделить
-        if( Node<T>* node = alloc.allocate(sizeof(_Node_alloc_type))) 
+        if( Node<T>* node = alloc.allocate(1)) 
         {
             // node->m_t = t;
             alloc.construct(node, t);
@@ -127,7 +127,7 @@ public:
             Node<T>* newHead = m_head->m_next;
             // Освобождаем память, выделенную для удаляемого головного элемента
             alloc.destroy(m_head);
-            alloc.deallocate(m_head, sizeof(_Node_alloc_type));
+            alloc.deallocate(m_head, 1);
             // Назначаем новый головной элемент
             m_head = newHead;
         } // Иначе могли бы возбудить исключение
