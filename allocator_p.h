@@ -1,8 +1,9 @@
 
 #include <list>
+#include <boost/log/trivial.hpp>
 
 
-template<typename T>
+template<typename T, int P>
 class logging_allocator
 {
 private:
@@ -23,14 +24,15 @@ public:
 	template<typename U>
 	struct rebind
 	{
-		using other = logging_allocator<U>;
+		using other = logging_allocator<U, P>;
 	};
 
 
 	logging_allocator()
 	{
 		std::cout << __PRETTY_FUNCTION__ << std::endl;
-		block_size = 3;
+		// block_size = 3;
+		set_block_size(P);
 		free_ptr = 0;
 	}
 
@@ -80,6 +82,7 @@ public:
 			{ // Выделенная память закончилась. Нужно выделять новую.
 				p = std::malloc(block_size * sizeof(T));
 				if(!p) throw std::bad_alloc();
+				alloc_mem.push_back(static_cast<T*>(p));
 				wrk_ptr = static_cast<T*>(p);
 				free_ptr = block_size - n;
 				std::cout << "2";
@@ -107,7 +110,7 @@ public:
 	void deallocate(T *p, std::size_t n)
 	{
 		std::cout << __PRETTY_FUNCTION__ << "[n = " << n << "]" << std::endl;
-		std::free(p);
+		// std::free(p);
 	}
 
 	template<typename U, typename ...Args>

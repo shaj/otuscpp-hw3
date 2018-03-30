@@ -1,6 +1,7 @@
 language: cpp
 before_script:
   - sudo apt-get install libboost-test-dev -y
+  - sudo apt-get install libboost-log-dev -y
   - sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
   - sudo apt-get update -y
   - sudo apt-get install gcc-6 -y
