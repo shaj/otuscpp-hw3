@@ -4,6 +4,7 @@ project(allocator VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 find_package(Boost COMPONENTS log REQUIRED)
+find_package(Threads)
 
 add_executable(allocator main.cpp)
 
@@ -12,11 +13,12 @@ add_executable(allocator main.cpp)
 set_target_properties(allocator PROPERTIES
   CXX_STANDARD 14
   CXX_STANDARD_REQUIRED ON
-  COMPILE_OPTIONS -Wpedantic -Wall -Wextra
   COMPILE_DEFINITIONS BOOST_LOG_DYN_LINK
+  COMPILE_OPTIONS -Wpedantic -Wall -Wextra
 )
 
 target_link_libraries(allocator
+  ${CMAKE_THREAD_LIBS_INIT}
   ${Boost_LIBRARIES}
 )
 
