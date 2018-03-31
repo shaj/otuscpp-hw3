@@ -30,7 +30,7 @@ public:
 
 	logging_allocator()
 	{
-		BOOST_LOG_TRIVIAL(trace) << __PRETTY_FUNCTION__;
+		// BOOST_LOG_TRIVIAL(trace) << __PRETTY_FUNCTION__;
 		// block_size = 3;
 		set_block_size(P);
 		free_ptr = 0;
@@ -39,17 +39,17 @@ public:
 
 	~logging_allocator()
 	{
-		BOOST_LOG_TRIVIAL(trace) << __PRETTY_FUNCTION__ << "[as = " << alloc_mem.size() << "]";
+		// BOOST_LOG_TRIVIAL(trace) << __PRETTY_FUNCTION__ << "[as = " << alloc_mem.size() << "]";
 		for(auto it: alloc_mem)
 		{
-			BOOST_LOG_TRIVIAL(trace) << it;
+			// BOOST_LOG_TRIVIAL(trace) << it;
 			std::free(it);
 		}
 	}
 
 	void set_block_size(int val)
 	{
-		BOOST_LOG_TRIVIAL(trace) << __PRETTY_FUNCTION__ << "[bs = " << val << "]";
+		// BOOST_LOG_TRIVIAL(trace) << __PRETTY_FUNCTION__ << "[bs = " << val << "]";
 
 		if(val <= 0)
 		{
@@ -68,13 +68,13 @@ public:
 
 	T *allocate(std::size_t n)
 	{
-		BOOST_LOG_TRIVIAL(trace) << __PRETTY_FUNCTION__ << "[n = " << n << "]";
+		// BOOST_LOG_TRIVIAL(trace) << __PRETTY_FUNCTION__ << "[n = " << n << "]";
 		void *p;
 		if(n > block_size)
 		{ // Просто выделяем новую память запрашиваемого размера
 			p = std::malloc(n * sizeof(T));
 			alloc_mem.push_back(static_cast<T*>(p));
-			BOOST_LOG_TRIVIAL(trace) << "1";
+			// BOOST_LOG_TRIVIAL(trace) << "1";
 		}
 		else
 		{
@@ -85,7 +85,7 @@ public:
 				alloc_mem.push_back(static_cast<T*>(p));
 				wrk_ptr = static_cast<T*>(p);
 				free_ptr = block_size - n;
-				BOOST_LOG_TRIVIAL(trace) << "2";
+				// BOOST_LOG_TRIVIAL(trace) << "2";
 			}
 			else if(n > free_ptr)
 			{ // Оставшаяся выделенная память меньше требуемой
@@ -93,36 +93,36 @@ public:
 				p = std::malloc(n * sizeof(T));
 				if(!p) throw std::bad_alloc();
 				alloc_mem.push_back(static_cast<T*>(p));
-				BOOST_LOG_TRIVIAL(trace) << "3";
+				// BOOST_LOG_TRIVIAL(trace) << "3";
 			}
 			else /* n <= free_ptr */
 			{
 				p = wrk_ptr + block_size - free_ptr;
 				free_ptr -= n;
-				BOOST_LOG_TRIVIAL(trace) << "4";
+				// BOOST_LOG_TRIVIAL(trace) << "4";
 			}
 		}
 		// if(!p) throw std::bad_alloc();
-		BOOST_LOG_TRIVIAL(trace) << p << " ~ " << wrk_ptr << " ~ " << free_ptr << " ~ " << alloc_mem.size() << " ~ ";
+		// BOOST_LOG_TRIVIAL(trace) << p << " ~ " << wrk_ptr << " ~ " << free_ptr << " ~ " << alloc_mem.size() << " ~ ";
 		return reinterpret_cast<T *>(p);
 	}
 
 	void deallocate(T *p, std::size_t n)
 	{
-		BOOST_LOG_TRIVIAL(trace) << __PRETTY_FUNCTION__ << "[n = " << n << "]";
+		// BOOST_LOG_TRIVIAL(trace) << __PRETTY_FUNCTION__ << "[n = " << n << "]";
 		// std::free(p);
 	}
 
 	template<typename U, typename ...Args>
 	void construct(U *p, Args &&...args)
 	{
-		BOOST_LOG_TRIVIAL(trace) << __PRETTY_FUNCTION__;
+		// BOOST_LOG_TRIVIAL(trace) << __PRETTY_FUNCTION__;
 		new(p) U(std::forward<Args>(args)...);
 	}
 
 	void destroy(T *p)
 	{
-		BOOST_LOG_TRIVIAL(trace) << __PRETTY_FUNCTION__;
+		// BOOST_LOG_TRIVIAL(trace) << __PRETTY_FUNCTION__;
 		p->~T();
 	}
 };
