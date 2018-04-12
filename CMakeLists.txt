@@ -4,11 +4,10 @@ project(allocator VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 
 find_package(Boost COMPONENTS unit_test_framework REQUIRED)
 find_package(Boost COMPONENTS log REQUIRED)
+find_package(Boost COMPONENTS program_options REQUIRED)
 find_package(Threads)
 
-add_executable(allocator main.cpp)
-
-#add_library(helloworld lib.cpp)
+add_executable(allocator main.cpp newdelete.cpp)
 
 set_target_properties(allocator PROPERTIES
   CXX_STANDARD 14
@@ -18,8 +17,12 @@ set_target_properties(allocator PROPERTIES
 )
 
 target_link_libraries(allocator
-  ${CMAKE_THREAD_LIBS_INIT}
   ${Boost_LIBRARIES}
+  ${Boost_SYSTEM_LIBRARY}
+  ${Boost_LOG_LIBRARY}
+  ${Boost_LOG_SETUP_LIBRARY}
+  ${Boost_THREAD_LIBRARY}
+  ${CMAKE_THREAD_LIBS_INIT}
 )
 
 #add_executable(test_main_cli test_main.cpp)

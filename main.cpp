@@ -1,47 +1,55 @@
 
 
+#define BOOST_LOG_DYN_LINK 1
+
+#include "newdelete.h"
 
 #include <ios>
 #include <iostream>
 #include <vector>
 #include <map>
 
-#include "allocator_p.h"
+#include "allocator.h"
 #include "mylist.h"
 
 
-// #define BOOST_LOG_DYN_LINK 1
+#include <boost/program_options.hpp>
 
-// #include <boost/log/trivial.hpp>
-// #include <boost/log/utility/setup/file.hpp>
-// #include <boost/log/utility/setup/common_attributes.hpp>
+namespace po = boost::program_options;
+
+#include <boost/log/trivial.hpp>
+#include <boost/log/utility/setup/file.hpp>
+#include <boost/log/utility/setup/common_attributes.hpp>
+
+namespace logging = boost::log;
+namespace src = boost::log::sources;
+namespace sinks = boost::log::sinks;
+namespace keywords = boost::log::keywords;
 
 
-// namespace logging = boost::log;
-// namespace src = boost::log::sources;
-// namespace sinks = boost::log::sinks;
-// namespace keywords = boost::log::keywords;
 
-
-
-long double fact(int N)
+constexpr auto factorial(auto n) -> decltype(n)
 {
-    if(N < 0) // если пользователь ввел отрицательное число
-        return 0; // возвращаем ноль
-    if (N == 0) // если пользователь ввел ноль,
-        return 1; // возвращаем факториал от нуля - не удивляетесь, но это 1 =)
-    else // Во всех остальных случаях
-        return N * fact(N - 1); // делаем рекурсию.
+    return n ? n*factorial(n-1):1;
 }
 
+static_assert(factorial(9) == 9*8*7*6*5*4*3*2*1, "factorial failed!");
+static_assert(factorial(8) ==   8*7*6*5*4*3*2*1, "factorial failed!");
+static_assert(factorial(7) ==     7*6*5*4*3*2*1, "factorial failed!");
+static_assert(factorial(6) ==       6*5*4*3*2*1, "factorial failed!");
+static_assert(factorial(5) ==         5*4*3*2*1, "factorial failed!");
+static_assert(factorial(4) ==           4*3*2*1, "factorial failed!");
+static_assert(factorial(3) ==             3*2*1, "factorial failed!");
+static_assert(factorial(2) ==               2*1, "factorial failed!");
+static_assert(factorial(1) ==                 1, "factorial failed!");
+static_assert(factorial(0) ==                 1, "factorial failed!");
 
 
 
-
-
-int main (int, char *[])
+int main (int argc, char *argv[])
 {
 
+    std::cout << "--------- my::alloc_counter=" << my::alloc_counter << std::endl;
 
 	// logging::add_common_attributes();
 
@@ -53,10 +61,40 @@ int main (int, char *[])
 	// 		keywords::auto_flush = true,
 	// 		keywords::open_mode = std::ios_base::app);
 
+	// logging::core::get()->set_logging_enabled(false);	
+
+
+
+	// po::options_description descr("Allowed options");
+	// descr.add_options()
+	// 	("help,h", "produce help message")
+	// 	("version,v", "version")
+	// 	("debug,d", "enable loggigng")
+	// ;
+
+	// po::variables_map vm;
+	// po::store(po::parse_command_line(argc, argv, descr), vm);
+	// po::notify(vm);
+
+	// if(vm.count("help"))
+	// {
+	// 	std::cout << descr << std::endl;
+	// 	return 0;
+	// }
+
+	// if(vm.count("version"))
+	// {
+	// 	std::cout << "version()" << std::endl;
+	// 	return 0;
+	// }
+
+	// if(vm.count("debug"))
+	// {
+	// 	logging::core::get()->set_logging_enabled(true);	
+	// }
+
 
 	// BOOST_LOG_TRIVIAL(info) << "Start allocator test";
-
-
 
 /*	
 	BOOST_LOG_TRIVIAL(info) << "Test vector with logging_allocator";
@@ -77,39 +115,53 @@ int main (int, char *[])
 
 
 */
+    auto make_factorial_value = [i=0] () mutable
+    {
+        auto f = factorial(i);
+        std::cout << i << " " << f << std::endl;
+        auto value = std::make_pair(i,f);
+        ++i;
+        return value;
+    };
 
 
 	// BOOST_LOG_TRIVIAL(info) << "Test map with std::allocator";
-	auto m1 = std::map<int, long double>{};
-	for(size_t i=0; i<10; i++)
-	{
-		m1[i] = fact(i);
-	}
+    std::map<int, int> m1;
+    std::generate_n( std::inserter(m1, std::begin(m1))
+                   , 15
+                   , make_factorial_value
+                   );
+
 	for(auto it: m1)
 	{
 		std::cout << it.first << " " << it.second << std::endl;
 	}
 
 	// BOOST_LOG_TRIVIAL(info) << "Test map with logging_allocator";
-	auto m2 = std::map<int, long double, std::less<int>,
-			logging_allocator<std::pair<const int, long double>, 6>> {};
+    std::map<int, int, std::less<int>, my::logging_allocator<std::pair<const int, int>, 10> > m2;
+    std::generate_n( std::inserter(m2, std::begin(m2))
+                   , 15
+                   , make_factorial_value
+                   );
 
-	for(size_t i=0; i<10; ++i)
-	{
-		m2[i] = fact(i);
-	}
-	for(auto it: m2)
+ 	for(auto it: m2)
 	{
 		std::cout << it.first << " " << it.second << std::endl;
 	}
 
 
 	// BOOST_LOG_TRIVIAL(info) << "Test mylist with std::allocator";
-	// auto m3 = mylist<int>{};
-	// for(size_t i=0; i<10; i++)
-	// {
-	// 	m3.append(i);
-	// }
+	// auto m3 = my::mylist<int>{};
+	// // for(size_t i=0; i<10; i++)
+	// // {
+	// // 	m3.append(i);
+	// // }
+
+ //    std::generate_n( std::inserter(m3, std::begin(m3))
+ //                   , 15
+ //                   , [i=0]()mutable{return i++;}
+ //                   );
+
 	// for(auto it: m3)
 	// {
 	// 	std::cout << it << std::endl;
@@ -117,17 +169,25 @@ int main (int, char *[])
 
 
 	// BOOST_LOG_TRIVIAL(info) << "Test mylist with logging_allocator";
-	auto m4 = mylist<int, logging_allocator<int, 6>>{};
-	for(size_t i=0; i<10; i++)
-	{
-		m4.append(i);
-	}
+	my::mylist<int, my::logging_allocator<int, 10>> m4;
+
+	// for(size_t i=0; i<10; i++)
+	// {
+	// 	m4.append(i);
+	// }
+    std::generate_n( std::inserter(m4, std::begin(m4))
+                   , 15
+                   , [i=0]()mutable{return i++;}
+                   );
+
 	for(auto it: m4)
 	{
 		std::cout << it << std::endl;
 	}
 
 
+
+    std::cout << "========== my::alloc_counter=" << my::alloc_counter << std::endl;
 	return 0;
 }
 

@@ -1,5 +1,7 @@
 
 
+namespace my {
+
 
 template< typename T, typename Allocator=std::allocator<T>() >
 class mylist {
@@ -23,6 +25,7 @@ private:
     typedef __gnu_cxx::__alloc_traits<_Node_alloc_type> _Node_alloc_traits;
 
     _Node_alloc_type alloc;
+    
     // Голова односвязного списка
     Node<T>* m_head;
     Node<T>* m_last;
@@ -74,6 +77,15 @@ public:
     };
 
 public:
+
+    typedef Iterator<T> iterator;
+    using value_type = T;
+    using pointer = T*;
+    using const_pointer = const T*;
+    using reference = T&;
+    using const_reference = const T&;
+
+
     mylist() noexcept
     : alloc(), m_head(), m_last()
     { }
@@ -117,6 +129,27 @@ public:
             }
         }
     }
+
+    Iterator<T> insert(const Iterator<T> pos, T&& value )
+    {
+        if( Node<T>* node = alloc.allocate(1)) 
+        {
+            alloc.construct(node, std::move(value));
+            node->m_next = nullptr;
+            if(m_head == nullptr)
+            {
+                m_head = node;
+                m_last = node;
+            }
+            else
+            {
+                m_last->m_next = node;
+                m_last = node;
+            }
+            return Iterator<T>(node);
+        }
+        return Iterator<T>(nullptr);
+    }
     
     // Удаление первого узла из списка
     void remove()
@@ -153,4 +186,4 @@ public:
 };
 
 
-
+} // namespace my
