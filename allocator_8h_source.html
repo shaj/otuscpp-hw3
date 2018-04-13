@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>ip_filter: Исходный файл allocator.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">ip_filter
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.6 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Титульная&#160;страница</span></a></li>
+      <li><a href="pages.html"><span>Описания</span></a></li>
+      <li><a href="namespaces.html"><span>Пространства&#160;имен</span></a></li>
+      <li><a href="annotated.html"><span>Классы</span></a></li>
+      <li class="current"><a href="files.html"><span>Файлы</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Поиск" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Файлы</span></a></li>
+      <li><a href="globals.html"><span>Список&#160;членов&#160;всех&#160;файлов</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Указатель</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Классы</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Пространства имен</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Файлы</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Функции</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Переменные</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Определения типов</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Макросы</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Страницы</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">allocator.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="allocator_8h.html">См. документацию.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
+<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor"></span></div>
+<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;array&gt;</span></div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;list&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;boost/log/trivial.hpp&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;</div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;</div>
+<div class="line"><a name="l00011"></a><span class="lineno"><a class="line" href="namespacemy.html">   11</a></span>&#160;<span class="keyword">namespace </span>my {</div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;</div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">template</span>&lt;<span class="keyword">typename</span> T, <span class="keywordtype">size_t</span> P&gt;</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="classmy_1_1logging__allocator.html">   14</a></span>&#160;<span class="keyword">class </span><a class="code" href="classmy_1_1logging__allocator.html">logging_allocator</a></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;{</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    static_assert(P != 0, <span class="stringliteral">&quot;no zero capacity!&quot;</span>);</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    </div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">private</span>:</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    std::vector&lt;std::vector&lt;std::array&lt;unsigned char,sizeof(T)&gt;&gt;&gt; pool;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    std::size_t index = 0;</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keyword">public</span>:</div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="classmy_1_1logging__allocator.html#ad7f512ee9e45eeaecd6766dc20b33d53">   23</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="classmy_1_1logging__allocator.html#ad7f512ee9e45eeaecd6766dc20b33d53">value_type</a> = T;</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="classmy_1_1logging__allocator.html#aca22f325c9bf11c2fc56c7939c28c1f5">   24</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="classmy_1_1logging__allocator.html#aca22f325c9bf11c2fc56c7939c28c1f5">pointer</a> = T*;</div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classmy_1_1logging__allocator.html#ab9eb479e4168ebd0d842bc1f58c6f364">   25</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="classmy_1_1logging__allocator.html#ab9eb479e4168ebd0d842bc1f58c6f364">const_pointer</a> = <span class="keyword">const</span> T*;</div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classmy_1_1logging__allocator.html#a1c0968532e2a1712f1fbde70b80f0bd6">   26</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="classmy_1_1logging__allocator.html#a1c0968532e2a1712f1fbde70b80f0bd6">reference</a> = T&amp;;</div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classmy_1_1logging__allocator.html#ab290549769e52169b649f0bd49cc4b18">   27</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="classmy_1_1logging__allocator.html#ab290549769e52169b649f0bd49cc4b18">const_reference</a> = <span class="keyword">const</span> T&amp;;</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;</div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="classmy_1_1logging__allocator.html#a1a58309f99155d831a14b6709de7ce7f">   29</a></span>&#160;    <span class="keyword">static</span> <span class="keywordtype">int</span> <a class="code" href="classmy_1_1logging__allocator.html#a1a58309f99155d831a14b6709de7ce7f">BlockSize</a>;</div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> U&gt;</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="structmy_1_1logging__allocator_1_1rebind.html">   32</a></span>&#160;    <span class="keyword">struct </span><a class="code" href="structmy_1_1logging__allocator_1_1rebind.html">rebind</a></div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    {</div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="structmy_1_1logging__allocator_1_1rebind.html#ae7f9bfc53f4e601fdba3060874faecc5">   34</a></span>&#160;        <span class="keyword">using</span> <a class="code" href="classmy_1_1logging__allocator.html">other</a> = <a class="code" href="classmy_1_1logging__allocator.html">logging_allocator&lt;U, P&gt;</a>;</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;    };</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <a class="code" href="classmy_1_1logging__allocator.html#ae4c24dfabc3cc4289ef8f834b755d244">logging_allocator</a>() = <span class="keywordflow">default</span>;</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">class</span> U&gt;</div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="classmy_1_1logging__allocator.html#a07cea247cdfb33e7626672df27d83bd2">   40</a></span>&#160;    <a class="code" href="classmy_1_1logging__allocator.html#a07cea247cdfb33e7626672df27d83bd2">logging_allocator</a>(<span class="keyword">const</span> <a class="code" href="classmy_1_1logging__allocator.html">logging_allocator&lt;U, P&gt;</a>&amp; other)</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;    {</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;        <span class="comment">// BOOST_LOG_TRIVIAL(trace) &lt;&lt; __PRETTY_FUNCTION__;</span></div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    }</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;</div>
+<div class="line"><a name="l00046"></a><span class="lineno"><a class="line" href="classmy_1_1logging__allocator.html#abd323511cf658973dca1cf58485dc9bf">   46</a></span>&#160;    <a class="code" href="classmy_1_1logging__allocator.html#abd323511cf658973dca1cf58485dc9bf">~logging_allocator</a>()</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    {</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;        <span class="comment">// BOOST_LOG_TRIVIAL(trace) &lt;&lt; __PRETTY_FUNCTION__ &lt;&lt; &quot;[as = &quot; &lt;&lt; alloc_mem.size() &lt;&lt; &quot;]&quot;;</span></div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    }</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;</div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="classmy_1_1logging__allocator.html#abf0463bd4e206b6279115f77a39f9589">   53</a></span>&#160;    T *<a class="code" href="classmy_1_1logging__allocator.html#abf0463bd4e206b6279115f77a39f9589">allocate</a>(std::size_t n)</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    {</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;        <span class="comment">// BOOST_LOG_TRIVIAL(trace) &lt;&lt; __PRETTY_FUNCTION__ &lt;&lt; &quot;[n = &quot; &lt;&lt; n &lt;&lt; &quot;]&quot;;</span></div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;        <span class="keywordflow">if</span>(n != 1)</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;            <span class="keywordflow">throw</span> std::invalid_argument( <span class="stringliteral">&quot;Invalid  number of elements for allocate()&quot;</span> );</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;        pool.resize(1 + index/P);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;        pool[index/P].resize(P);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;        T* p = <span class="keyword">reinterpret_cast&lt;</span>T*<span class="keyword">&gt;</span>(&amp;pool[index/P][index%P]);</div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;        index += n;</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;        <span class="keywordflow">return</span> p;</div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;    }</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;</div>
+<div class="line"><a name="l00066"></a><span class="lineno"><a class="line" href="classmy_1_1logging__allocator.html#afc797de1b1c78f87264c6703cbe26f75">   66</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classmy_1_1logging__allocator.html#afc797de1b1c78f87264c6703cbe26f75">deallocate</a>(T *p, std::size_t n)</div>
+<div class="line"><a name="l00067"></a><span class="lineno">   67</span>&#160;    {</div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;        <span class="comment">// BOOST_LOG_TRIVIAL(trace) &lt;&lt; __PRETTY_FUNCTION__ &lt;&lt; &quot;[n = &quot; &lt;&lt; n &lt;&lt; &quot;]&quot;;</span></div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;    }</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;    <span class="keyword">template</span>&lt;<span class="keyword">typename</span> U, <span class="keyword">typename</span> ...Args&gt;</div>
+<div class="line"><a name="l00072"></a><span class="lineno"><a class="line" href="classmy_1_1logging__allocator.html#a2807e19717e3dd424b76c036bad7f956">   72</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classmy_1_1logging__allocator.html#a2807e19717e3dd424b76c036bad7f956">construct</a>(U *p, Args &amp;&amp;...args)</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;    {</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;        <span class="comment">// BOOST_LOG_TRIVIAL(trace) &lt;&lt; __PRETTY_FUNCTION__;</span></div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160;        <span class="keyword">new</span>(p) U(std::forward&lt;Args&gt;(args)...);</div>
+<div class="line"><a name="l00076"></a><span class="lineno">   76</span>&#160;    }</div>
+<div class="line"><a name="l00077"></a><span class="lineno">   77</span>&#160;</div>
+<div class="line"><a name="l00078"></a><span class="lineno"><a class="line" href="classmy_1_1logging__allocator.html#ac00d48c40820c59a53ca07881b98cc54">   78</a></span>&#160;    <span class="keywordtype">void</span> <a class="code" href="classmy_1_1logging__allocator.html#ac00d48c40820c59a53ca07881b98cc54">destroy</a>(T *p)</div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;    {</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;        <span class="comment">// BOOST_LOG_TRIVIAL(trace) &lt;&lt; __PRETTY_FUNCTION__;</span></div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160;        p-&gt;~T();</div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    }</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160;};</div>
+<div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;</div>
+<div class="line"><a name="l00085"></a><span class="lineno">   85</span>&#160;} <span class="comment">// namespace my</span></div>
+<div class="ttc" id="classmy_1_1logging__allocator_html"><div class="ttname"><a href="classmy_1_1logging__allocator.html">my::logging_allocator</a></div><div class="ttdef"><b>Definition:</b> allocator.h:14</div></div>
+<div class="ttc" id="classmy_1_1logging__allocator_html_afc797de1b1c78f87264c6703cbe26f75"><div class="ttname"><a href="classmy_1_1logging__allocator.html#afc797de1b1c78f87264c6703cbe26f75">my::logging_allocator::deallocate</a></div><div class="ttdeci">void deallocate(T *p, std::size_t n)</div><div class="ttdef"><b>Definition:</b> allocator.h:66</div></div>
+<div class="ttc" id="structmy_1_1logging__allocator_1_1rebind_html"><div class="ttname"><a href="structmy_1_1logging__allocator_1_1rebind.html">my::logging_allocator::rebind</a></div><div class="ttdef"><b>Definition:</b> allocator.h:32</div></div>
+<div class="ttc" id="classmy_1_1logging__allocator_html_a1a58309f99155d831a14b6709de7ce7f"><div class="ttname"><a href="classmy_1_1logging__allocator.html#a1a58309f99155d831a14b6709de7ce7f">my::logging_allocator::BlockSize</a></div><div class="ttdeci">static int BlockSize</div><div class="ttdef"><b>Definition:</b> allocator.h:29</div></div>
+<div class="ttc" id="classmy_1_1logging__allocator_html_ab9eb479e4168ebd0d842bc1f58c6f364"><div class="ttname"><a href="classmy_1_1logging__allocator.html#ab9eb479e4168ebd0d842bc1f58c6f364">my::logging_allocator::const_pointer</a></div><div class="ttdeci">const T * const_pointer</div><div class="ttdef"><b>Definition:</b> allocator.h:25</div></div>
+<div class="ttc" id="classmy_1_1logging__allocator_html_a07cea247cdfb33e7626672df27d83bd2"><div class="ttname"><a href="classmy_1_1logging__allocator.html#a07cea247cdfb33e7626672df27d83bd2">my::logging_allocator::logging_allocator</a></div><div class="ttdeci">logging_allocator(const logging_allocator&lt; U, P &gt; &amp;other)</div><div class="ttdef"><b>Definition:</b> allocator.h:40</div></div>
+<div class="ttc" id="classmy_1_1logging__allocator_html_a1c0968532e2a1712f1fbde70b80f0bd6"><div class="ttname"><a href="classmy_1_1logging__allocator.html#a1c0968532e2a1712f1fbde70b80f0bd6">my::logging_allocator::reference</a></div><div class="ttdeci">T &amp; reference</div><div class="ttdef"><b>Definition:</b> allocator.h:26</div></div>
+<div class="ttc" id="classmy_1_1logging__allocator_html_ad7f512ee9e45eeaecd6766dc20b33d53"><div class="ttname"><a href="classmy_1_1logging__allocator.html#ad7f512ee9e45eeaecd6766dc20b33d53">my::logging_allocator::value_type</a></div><div class="ttdeci">T value_type</div><div class="ttdef"><b>Definition:</b> allocator.h:23</div></div>
+<div class="ttc" id="classmy_1_1logging__allocator_html_ac00d48c40820c59a53ca07881b98cc54"><div class="ttname"><a href="classmy_1_1logging__allocator.html#ac00d48c40820c59a53ca07881b98cc54">my::logging_allocator::destroy</a></div><div class="ttdeci">void destroy(T *p)</div><div class="ttdef"><b>Definition:</b> allocator.h:78</div></div>
+<div class="ttc" id="classmy_1_1logging__allocator_html_aca22f325c9bf11c2fc56c7939c28c1f5"><div class="ttname"><a href="classmy_1_1logging__allocator.html#aca22f325c9bf11c2fc56c7939c28c1f5">my::logging_allocator::pointer</a></div><div class="ttdeci">T * pointer</div><div class="ttdef"><b>Definition:</b> allocator.h:24</div></div>
+<div class="ttc" id="classmy_1_1logging__allocator_html_ae4c24dfabc3cc4289ef8f834b755d244"><div class="ttname"><a href="classmy_1_1logging__allocator.html#ae4c24dfabc3cc4289ef8f834b755d244">my::logging_allocator::logging_allocator</a></div><div class="ttdeci">logging_allocator()=default</div></div>
+<div class="ttc" id="classmy_1_1logging__allocator_html_ab290549769e52169b649f0bd49cc4b18"><div class="ttname"><a href="classmy_1_1logging__allocator.html#ab290549769e52169b649f0bd49cc4b18">my::logging_allocator::const_reference</a></div><div class="ttdeci">const T &amp; const_reference</div><div class="ttdef"><b>Definition:</b> allocator.h:27</div></div>
+<div class="ttc" id="classmy_1_1logging__allocator_html_a2807e19717e3dd424b76c036bad7f956"><div class="ttname"><a href="classmy_1_1logging__allocator.html#a2807e19717e3dd424b76c036bad7f956">my::logging_allocator::construct</a></div><div class="ttdeci">void construct(U *p, Args &amp;&amp;...args)</div><div class="ttdef"><b>Definition:</b> allocator.h:72</div></div>
+<div class="ttc" id="classmy_1_1logging__allocator_html_abd323511cf658973dca1cf58485dc9bf"><div class="ttname"><a href="classmy_1_1logging__allocator.html#abd323511cf658973dca1cf58485dc9bf">my::logging_allocator::~logging_allocator</a></div><div class="ttdeci">~logging_allocator()</div><div class="ttdef"><b>Definition:</b> allocator.h:46</div></div>
+<div class="ttc" id="classmy_1_1logging__allocator_html_abf0463bd4e206b6279115f77a39f9589"><div class="ttname"><a href="classmy_1_1logging__allocator.html#abf0463bd4e206b6279115f77a39f9589">my::logging_allocator::allocate</a></div><div class="ttdeci">T * allocate(std::size_t n)</div><div class="ttdef"><b>Definition:</b> allocator.h:53</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.6
+</small></address>
+</body>
+</html>

@@ -1,0 +1,541 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.6"/>
+<title>ip_filter: Шаблон класса my::mylist&lt; T, Allocator &gt;</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">ip_filter
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Создано системой Doxygen 1.8.6 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Титульная&#160;страница</span></a></li>
+      <li><a href="pages.html"><span>Описания</span></a></li>
+      <li><a href="namespaces.html"><span>Пространства&#160;имен</span></a></li>
+      <li class="current"><a href="annotated.html"><span>Классы</span></a></li>
+      <li><a href="files.html"><span>Файлы</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Поиск" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="annotated.html"><span>Классы</span></a></li>
+      <li><a href="classes.html"><span>Алфавитный&#160;указатель&#160;классов</span></a></li>
+      <li><a href="functions.html"><span>Члены&#160;классов</span></a></li>
+    </ul>
+  </div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Указатель</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Классы</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Пространства имен</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Файлы</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Функции</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Переменные</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(6)"><span class="SelectionMark">&#160;</span>Определения типов</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(7)"><span class="SelectionMark">&#160;</span>Макросы</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(8)"><span class="SelectionMark">&#160;</span>Страницы</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="namespacemy.html">my</a></li><li class="navelem"><a class="el" href="classmy_1_1mylist.html">mylist</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="summary">
+<a href="#nested-classes">Классы</a> &#124;
+<a href="#pub-types">Открытые типы</a> &#124;
+<a href="#pub-methods">Открытые члены</a> &#124;
+<a href="classmy_1_1mylist-members.html">Полный список членов класса</a>  </div>
+  <div class="headertitle">
+<div class="title">Шаблон класса my::mylist&lt; T, Allocator &gt;</div>  </div>
+</div><!--header-->
+<div class="contents">
+
+<p>Шаблон класса односвязного списка  
+ <a href="classmy_1_1mylist.html#details">Подробнее...</a></p>
+
+<p><code>#include &lt;<a class="el" href="mylist_8h_source.html">mylist.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Классы</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmy_1_1mylist_1_1Iterator.html">Iterator</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Класс итератора односвязного списка  <a href="classmy_1_1mylist_1_1Iterator.html#details">Подробнее...</a><br/></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Открытые типы</h2></td></tr>
+<tr class="memitem:aa70a4d762d36c8e988026e551973901f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmy_1_1mylist.html#aa70a4d762d36c8e988026e551973901f">value_type</a> = T</td></tr>
+<tr class="separator:aa70a4d762d36c8e988026e551973901f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8a5c0d1d02235a372da50e70d76f295b"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmy_1_1mylist.html#a8a5c0d1d02235a372da50e70d76f295b">pointer</a> = T *</td></tr>
+<tr class="separator:a8a5c0d1d02235a372da50e70d76f295b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a88e22694abfec10e2baef8aee9c921cc"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmy_1_1mylist.html#a88e22694abfec10e2baef8aee9c921cc">const_pointer</a> = const T *</td></tr>
+<tr class="separator:a88e22694abfec10e2baef8aee9c921cc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a33edc9602f216603fb467f8402be413f"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmy_1_1mylist.html#a33edc9602f216603fb467f8402be413f">reference</a> = T &amp;</td></tr>
+<tr class="separator:a33edc9602f216603fb467f8402be413f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77a9a5f2458eccac8946ccbc1ba0a999"><td class="memItemLeft" align="right" valign="top">using&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmy_1_1mylist.html#a77a9a5f2458eccac8946ccbc1ba0a999">const_reference</a> = const T &amp;</td></tr>
+<tr class="separator:a77a9a5f2458eccac8946ccbc1ba0a999"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addabb71bb0842ab456e94902384490ac"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classmy_1_1mylist_1_1Iterator.html">Iterator</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmy_1_1mylist.html#addabb71bb0842ab456e94902384490ac">iterator</a></td></tr>
+<tr class="separator:addabb71bb0842ab456e94902384490ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a70438cde6f047a4b390e5d14fed9a0f5"><td class="memItemLeft" align="right" valign="top">typedef <br class="typebreak"/>
+__gnu_cxx::__alloc_traits<br class="typebreak"/>
+&lt; Allocator &gt;::template rebind<br class="typebreak"/>
+&lt; T &gt;::other&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmy_1_1mylist.html#a70438cde6f047a4b390e5d14fed9a0f5">_Tp_alloc_type</a></td></tr>
+<tr class="separator:a70438cde6f047a4b390e5d14fed9a0f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a98e69c40a5ec191cf71dc9a000ac4b4e"><td class="memItemLeft" align="right" valign="top">typedef <br class="typebreak"/>
+__gnu_cxx::__alloc_traits<br class="typebreak"/>
+&lt; <a class="el" href="classmy_1_1mylist.html#a70438cde6f047a4b390e5d14fed9a0f5">_Tp_alloc_type</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmy_1_1mylist.html#a98e69c40a5ec191cf71dc9a000ac4b4e">_Tp_alloc_traits</a></td></tr>
+<tr class="separator:a98e69c40a5ec191cf71dc9a000ac4b4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a086f45938b2afe6813dde18f87b89460"><td class="memItemLeft" align="right" valign="top">typedef <br class="typebreak"/>
+_Tp_alloc_traits::template <br class="typebreak"/>
+rebind&lt; Node&lt; T &gt; &gt;::other&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmy_1_1mylist.html#a086f45938b2afe6813dde18f87b89460">_Node_alloc_type</a></td></tr>
+<tr class="separator:a086f45938b2afe6813dde18f87b89460"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad80c0b3014b689ba329a10946e54171f"><td class="memItemLeft" align="right" valign="top">typedef <br class="typebreak"/>
+__gnu_cxx::__alloc_traits<br class="typebreak"/>
+&lt; <a class="el" href="classmy_1_1mylist.html#a086f45938b2afe6813dde18f87b89460">_Node_alloc_type</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmy_1_1mylist.html#ad80c0b3014b689ba329a10946e54171f">_Node_alloc_traits</a></td></tr>
+<tr class="separator:ad80c0b3014b689ba329a10946e54171f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Открытые члены</h2></td></tr>
+<tr class="memitem:a0434aff2773a3d664703e6db5a81d6ea"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmy_1_1mylist.html#a0434aff2773a3d664703e6db5a81d6ea">mylist</a> () noexcept</td></tr>
+<tr class="separator:a0434aff2773a3d664703e6db5a81d6ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2d999505099ab6fb737ea328e0595c7a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmy_1_1mylist.html#a2d999505099ab6fb737ea328e0595c7a">~mylist</a> ()</td></tr>
+<tr class="separator:a2d999505099ab6fb737ea328e0595c7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a05987b8e48795858e66d8f3f66b14de2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmy_1_1mylist.html#a05987b8e48795858e66d8f3f66b14de2">append</a> (const T &amp;t)</td></tr>
+<tr class="separator:a05987b8e48795858e66d8f3f66b14de2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9256fe6378310d939083fac32549e1e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmy_1_1mylist_1_1Iterator.html">Iterator</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmy_1_1mylist.html#a9256fe6378310d939083fac32549e1e8">insert</a> (const <a class="el" href="classmy_1_1mylist_1_1Iterator.html">Iterator</a>&lt; T &gt; pos, T &amp;&amp;value)</td></tr>
+<tr class="separator:a9256fe6378310d939083fac32549e1e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac108c1f3e17f977da1b54b4fa7f534fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmy_1_1mylist.html#ac108c1f3e17f977da1b54b4fa7f534fa">remove</a> ()</td></tr>
+<tr class="separator:ac108c1f3e17f977da1b54b4fa7f534fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c39ca50014998b0ae6bfce768851b14"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmy_1_1mylist.html#a7c39ca50014998b0ae6bfce768851b14">head</a> () const </td></tr>
+<tr class="memdesc:a7c39ca50014998b0ae6bfce768851b14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Получить головной элемент списка  <a href="#a7c39ca50014998b0ae6bfce768851b14">Подробнее...</a><br/></td></tr>
+<tr class="separator:a7c39ca50014998b0ae6bfce768851b14"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8e083c175f1e5c8eab092114b692fbf0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmy_1_1mylist_1_1Iterator.html">Iterator</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmy_1_1mylist.html#a8e083c175f1e5c8eab092114b692fbf0">begin</a> () const </td></tr>
+<tr class="memdesc:a8e083c175f1e5c8eab092114b692fbf0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Получить итератор на начало списка  <a href="#a8e083c175f1e5c8eab092114b692fbf0">Подробнее...</a><br/></td></tr>
+<tr class="separator:a8e083c175f1e5c8eab092114b692fbf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99a3f17fbcf0579e92cde52d92b84b81"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmy_1_1mylist_1_1Iterator.html">Iterator</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmy_1_1mylist.html#a99a3f17fbcf0579e92cde52d92b84b81">end</a> () const </td></tr>
+<tr class="memdesc:a99a3f17fbcf0579e92cde52d92b84b81"><td class="mdescLeft">&#160;</td><td class="mdescRight">Получить итератор на конец списка  <a href="#a99a3f17fbcf0579e92cde52d92b84b81">Подробнее...</a><br/></td></tr>
+<tr class="separator:a99a3f17fbcf0579e92cde52d92b84b81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
+<div class="textblock"><h3>template&lt;typename T, typename Allocator = std::allocator&lt;T&gt;()&gt;<br/>
+class my::mylist&lt; T, Allocator &gt;</h3>
+
+<p>Шаблон класса односвязного списка </p>
+</div><h2 class="groupheader">Определения типов</h2>
+<a class="anchor" id="ad80c0b3014b689ba329a10946e54171f"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef __gnu_cxx::__alloc_traits&lt;<a class="el" href="classmy_1_1mylist.html#a086f45938b2afe6813dde18f87b89460">_Node_alloc_type</a>&gt; <a class="el" href="classmy_1_1mylist.html">my::mylist</a>&lt; T, Allocator &gt;::<a class="el" href="classmy_1_1mylist.html#ad80c0b3014b689ba329a10946e54171f">_Node_alloc_traits</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a086f45938b2afe6813dde18f87b89460"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef _Tp_alloc_traits::template rebind&lt;Node&lt;T&gt; &gt;::other <a class="el" href="classmy_1_1mylist.html">my::mylist</a>&lt; T, Allocator &gt;::<a class="el" href="classmy_1_1mylist.html#a086f45938b2afe6813dde18f87b89460">_Node_alloc_type</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a98e69c40a5ec191cf71dc9a000ac4b4e"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef __gnu_cxx::__alloc_traits&lt;<a class="el" href="classmy_1_1mylist.html#a70438cde6f047a4b390e5d14fed9a0f5">_Tp_alloc_type</a>&gt; <a class="el" href="classmy_1_1mylist.html">my::mylist</a>&lt; T, Allocator &gt;::<a class="el" href="classmy_1_1mylist.html#a98e69c40a5ec191cf71dc9a000ac4b4e">_Tp_alloc_traits</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a70438cde6f047a4b390e5d14fed9a0f5"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef __gnu_cxx::__alloc_traits&lt;Allocator&gt;::template rebind&lt;T&gt;::other <a class="el" href="classmy_1_1mylist.html">my::mylist</a>&lt; T, Allocator &gt;::<a class="el" href="classmy_1_1mylist.html#a70438cde6f047a4b390e5d14fed9a0f5">_Tp_alloc_type</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a88e22694abfec10e2baef8aee9c921cc"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classmy_1_1mylist.html">my::mylist</a>&lt; T, Allocator &gt;::<a class="el" href="classmy_1_1mylist.html#a88e22694abfec10e2baef8aee9c921cc">const_pointer</a> =  const T*</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a77a9a5f2458eccac8946ccbc1ba0a999"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classmy_1_1mylist.html">my::mylist</a>&lt; T, Allocator &gt;::<a class="el" href="classmy_1_1mylist.html#a77a9a5f2458eccac8946ccbc1ba0a999">const_reference</a> =  const T&amp;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="addabb71bb0842ab456e94902384490ac"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef <a class="el" href="classmy_1_1mylist_1_1Iterator.html">Iterator</a>&lt;T&gt; <a class="el" href="classmy_1_1mylist.html">my::mylist</a>&lt; T, Allocator &gt;::<a class="el" href="classmy_1_1mylist.html#addabb71bb0842ab456e94902384490ac">iterator</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a8a5c0d1d02235a372da50e70d76f295b"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classmy_1_1mylist.html">my::mylist</a>&lt; T, Allocator &gt;::<a class="el" href="classmy_1_1mylist.html#a8a5c0d1d02235a372da50e70d76f295b">pointer</a> =  T*</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a33edc9602f216603fb467f8402be413f"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classmy_1_1mylist.html">my::mylist</a>&lt; T, Allocator &gt;::<a class="el" href="classmy_1_1mylist.html#a33edc9602f216603fb467f8402be413f">reference</a> =  T&amp;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aa70a4d762d36c8e988026e551973901f"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">using <a class="el" href="classmy_1_1mylist.html">my::mylist</a>&lt; T, Allocator &gt;::<a class="el" href="classmy_1_1mylist.html#aa70a4d762d36c8e988026e551973901f">value_type</a> =  T</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Конструктор(ы)</h2>
+<a class="anchor" id="a0434aff2773a3d664703e6db5a81d6ea"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmy_1_1mylist.html">my::mylist</a>&lt; T, Allocator &gt;::<a class="el" href="classmy_1_1mylist.html">mylist</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a2d999505099ab6fb737ea328e0595c7a"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmy_1_1mylist.html">my::mylist</a>&lt; T, Allocator &gt;::~<a class="el" href="classmy_1_1mylist.html">mylist</a> </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Методы</h2>
+<a class="anchor" id="a05987b8e48795858e66d8f3f66b14de2"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classmy_1_1mylist.html">my::mylist</a>&lt; T, Allocator &gt;::append </td>
+          <td>(</td>
+          <td class="paramtype">const T &amp;&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a8e083c175f1e5c8eab092114b692fbf0"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmy_1_1mylist_1_1Iterator.html">Iterator</a>&lt;T&gt; <a class="el" href="classmy_1_1mylist.html">my::mylist</a>&lt; T, Allocator &gt;::begin </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Получить итератор на начало списка </p>
+
+</div>
+</div>
+<a class="anchor" id="a99a3f17fbcf0579e92cde52d92b84b81"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmy_1_1mylist_1_1Iterator.html">Iterator</a>&lt;T&gt; <a class="el" href="classmy_1_1mylist.html">my::mylist</a>&lt; T, Allocator &gt;::end </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Получить итератор на конец списка </p>
+
+</div>
+</div>
+<a class="anchor" id="a7c39ca50014998b0ae6bfce768851b14"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">T <a class="el" href="classmy_1_1mylist.html">my::mylist</a>&lt; T, Allocator &gt;::head </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Получить головной элемент списка </p>
+
+</div>
+</div>
+<a class="anchor" id="a9256fe6378310d939083fac32549e1e8"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmy_1_1mylist_1_1Iterator.html">Iterator</a>&lt;T&gt; <a class="el" href="classmy_1_1mylist.html">my::mylist</a>&lt; T, Allocator &gt;::insert </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classmy_1_1mylist_1_1Iterator.html">Iterator</a>&lt; T &gt;&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">T &amp;&amp;&#160;</td>
+          <td class="paramname"><em>value</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ac108c1f3e17f977da1b54b4fa7f534fa"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void <a class="el" href="classmy_1_1mylist.html">my::mylist</a>&lt; T, Allocator &gt;::remove </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>Объявления и описания членов класса находятся в файле:<ul>
+<li><a class="el" href="mylist_8h_source.html">mylist.h</a></li>
+</ul>
+</div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Создано системой &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.6
+</small></address>
+</body>
+</html>
