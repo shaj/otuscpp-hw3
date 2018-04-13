@@ -30,7 +30,7 @@ namespace keywords = boost::log::keywords;
 
 constexpr auto factorial(auto n) -> decltype(n)
 {
-    return n ? n*factorial(n-1):1;
+	return n ? n*factorial(n-1):1;
 }
 
 static_assert(factorial(9) == 9*8*7*6*5*4*3*2*1, "factorial failed!");
@@ -49,7 +49,7 @@ static_assert(factorial(0) ==                 1, "factorial failed!");
 int main (int argc, char *argv[])
 {
 
-    std::cout << "--------- my::alloc_counter=" << my::alloc_counter << std::endl;
+	std::cout << "--------- my::alloc_counter=" << my::alloc_counter << std::endl;
 
 	// logging::add_common_attributes();
 
@@ -115,24 +115,22 @@ int main (int argc, char *argv[])
 
 
 */
-    auto make_factorial_value = [i=0] () mutable
-    {
-        auto f = factorial(i);
-        std::cout << i << " " << f << std::endl;
-        auto value = std::make_pair(i,f);
-        ++i;
-        return value;
-    };
+	auto make_factorial_value = [i=0] () mutable
+	{
+		auto f = factorial(i);
+		std::cout << i << " " << f << std::endl;
+		auto value = std::make_pair(i,f);
+		++i;
+		return value;
+	};
 
 
 	// BOOST_LOG_TRIVIAL(info) << "Test map with std::allocator";
-    std::cout << "--------- First test \"m1\" - map with std::allocator" << std::endl;
-
-    std::map<int, int> m1;
-    std::generate_n( std::inserter(m1, std::begin(m1))
-                   , 15
-                   , make_factorial_value
-                   );
+	std::map<int, int> m1;
+	std::generate_n( std::inserter(m1, std::begin(m1))
+				   , 15
+				   , make_factorial_value
+				   );
 
 	for(auto it: m1)
 	{
@@ -140,15 +138,13 @@ int main (int argc, char *argv[])
 	}
 
 	// BOOST_LOG_TRIVIAL(info) << "Test map with logging_allocator";
-    std::cout << "--------- Second test \"m2\" - map with my::logging_allocator" << std::endl;
+	std::map<int, int, std::less<int>, my::logging_allocator<std::pair<const int, int>, 10> > m2;
+	std::generate_n( std::inserter(m2, std::begin(m2))
+				   , 15
+				   , make_factorial_value
+				   );
 
-    std::map<int, int, std::less<int>, my::logging_allocator<std::pair<const int, int>, 10> > m2;
-    std::generate_n( std::inserter(m2, std::begin(m2))
-                   , 15
-                   , make_factorial_value
-                   );
-
- 	for(auto it: m2)
+	for(auto it: m2)
 	{
 		std::cout << it.first << " " << it.second << std::endl;
 	}
@@ -156,15 +152,15 @@ int main (int argc, char *argv[])
 
 	// BOOST_LOG_TRIVIAL(info) << "Test mylist with std::allocator";
 	// auto m3 = my::mylist<int>{};
-	// // for(size_t i=0; i<10; i++)
-	// // {
-	// // 	m3.append(i);
-	// // }
+	// for(size_t i=0; i<10; i++)
+	// {
+	// 	m3.append(i);
+	// }
 
- //    std::generate_n( std::inserter(m3, std::begin(m3))
- //                   , 15
- //                   , [i=0]()mutable{return i++;}
- //                   );
+	// std::generate_n( std::inserter(m3, std::begin(m3))
+	// 			   , 15
+	// 			   , [i=0]()mutable{return i++;}
+	// 			   );
 
 	// for(auto it: m3)
 	// {
@@ -173,19 +169,17 @@ int main (int argc, char *argv[])
 
 
 	// BOOST_LOG_TRIVIAL(info) << "Test mylist with logging_allocator";
-    std::cout << "--------- Third test \"m4\" - my::mylist with my::logging_allocator" << std::endl;
-
 	my::mylist<int, my::logging_allocator<int, 10>> m4;
 
 	for(size_t i=0; i<10; i++)
 	{
 		m4.append(i);
 	}
-    std::cout << "--------- ping" << std::endl;
-    // std::generate_n( std::inserter(m4, std::begin(m4))
-    //                , 15
-    //                , [i=0]()mutable{return i++;}
-    //                );
+
+	// std::generate_n( std::inserter(m4, std::begin(m4))
+	//                , 15
+	//                , [i=0]()mutable{return i++;}
+	//                );
 
 	for(auto it: m4)
 	{
@@ -194,7 +188,7 @@ int main (int argc, char *argv[])
 
 
 
-    std::cout << "========== my::alloc_counter=" << my::alloc_counter << std::endl;
+	std::cout << "========== my::alloc_counter=" << my::alloc_counter << std::endl;
 	return 0;
 }
 

@@ -1,7 +1,10 @@
 
+#pragma once
 
-
+#include <vector>
+#include <array>
 #include <list>
+
 #include <boost/log/trivial.hpp>
 
 
