@@ -126,6 +126,8 @@ int main (int argc, char *argv[])
 
 
 	// BOOST_LOG_TRIVIAL(info) << "Test map with std::allocator";
+    std::cout << "--------- First test \"m1\" - map with std::allocator" << std::endl;
+
     std::map<int, int> m1;
     std::generate_n( std::inserter(m1, std::begin(m1))
                    , 15
@@ -138,6 +140,8 @@ int main (int argc, char *argv[])
 	}
 
 	// BOOST_LOG_TRIVIAL(info) << "Test map with logging_allocator";
+    std::cout << "--------- Second test \"m2\" - map with my::logging_allocator" << std::endl;
+
     std::map<int, int, std::less<int>, my::logging_allocator<std::pair<const int, int>, 10> > m2;
     std::generate_n( std::inserter(m2, std::begin(m2))
                    , 15
@@ -169,16 +173,19 @@ int main (int argc, char *argv[])
 
 
 	// BOOST_LOG_TRIVIAL(info) << "Test mylist with logging_allocator";
+    std::cout << "--------- Third test \"m4\" - my::mylist with my::logging_allocator" << std::endl;
+
 	my::mylist<int, my::logging_allocator<int, 10>> m4;
 
-	// for(size_t i=0; i<10; i++)
-	// {
-	// 	m4.append(i);
-	// }
-    std::generate_n( std::inserter(m4, std::begin(m4))
-                   , 15
-                   , [i=0]()mutable{return i++;}
-                   );
+	for(size_t i=0; i<10; i++)
+	{
+		m4.append(i);
+	}
+    std::cout << "--------- ping" << std::endl;
+    // std::generate_n( std::inserter(m4, std::begin(m4))
+    //                , 15
+    //                , [i=0]()mutable{return i++;}
+    //                );
 
 	for(auto it: m4)
 	{

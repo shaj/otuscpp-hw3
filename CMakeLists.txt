@@ -9,7 +9,10 @@ find_package(Threads)
 
 add_executable(allocator main.cpp newdelete.cpp)
 
-set_target_properties(allocator PROPERTIES
+add_executable(test_allocator test_allocator.cpp newdelete.cpp)
+
+
+set_target_properties(allocator test_allocator PROPERTIES
   CXX_STANDARD 14
   CXX_STANDARD_REQUIRED ON
   COMPILE_DEFINITIONS BOOST_LOG_DYN_LINK
@@ -25,19 +28,16 @@ target_link_libraries(allocator
   ${CMAKE_THREAD_LIBS_INIT}
 )
 
-#add_executable(test_main_cli test_main.cpp)
+set_target_properties(test_allocator PROPERTIES
+  COMPILE_DEFINITIONS BOOST_TEST_DYN_LINK
+  INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}
+)
 
-#set_target_properties(test_main_cli PROPERTIES
-#  COMPILE_DEFINITIONS BOOST_TEST_DYN_LINK
-#  INCLUDE_DIRECTORIES ${Boost_INCLUDE_DIR}
-#)
 
-#target_link_libraries(helloworld_cli helloworld)
-
-#target_link_libraries(test_main_cli
-#  ${Boost_LIBRARIES}
-#  helloworld
-#)
+target_link_libraries(test_allocator
+  ${Boost_UNIT_TEST_LIBRARIES}
+  ${Boost_LIBRARIES}
+)
 
 
 configure_file("${PROJECT_SOURCE_DIR}/version.h.in" "${PROJECT_BINARY_DIR}/version.h")
@@ -56,6 +56,6 @@ set(CPACK_PACKAGE_CONTACT kolobrod2002@yandex.ru)
 
 include (CPack)
 
-#enable_testing()
+enable_testing()
 
-#add_test(test_version_valid test_main_cli)
+add_test(test_allocator test_allocator)
