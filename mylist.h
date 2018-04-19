@@ -10,7 +10,7 @@ namespace my
 {
 
 /// Шаблон класса односвязного списка
-template< typename T, typename Allocator=std::allocator<T>() >
+template< typename T, typename Allocator=std::allocator<T>>
 class mylist 
 {
 private:
@@ -31,11 +31,7 @@ public:
 	typedef Iterator<T> iterator;
 	
 
-
-    typedef typename __gnu_cxx::__alloc_traits<Allocator>::template  rebind<T>::other _Tp_alloc_type;
-    typedef __gnu_cxx::__alloc_traits<_Tp_alloc_type>   _Tp_alloc_traits;
-    typedef typename _Tp_alloc_traits::template  rebind<Node<T> >::other _Node_alloc_type;
-    typedef __gnu_cxx::__alloc_traits<_Node_alloc_type> _Node_alloc_traits;
+	typedef typename Allocator::template rebind<Node<T>>::other Node_alloc_type;
 
 private:
 
@@ -46,13 +42,14 @@ private:
 		Node() : m_next( nullptr ) { }
 		Node( const _T& t ) : m_t( t ), m_next( nullptr ) { }
 		_T m_t;             ///< Значение узла
-		Node<_T>* m_next;   ///< Указатель на следующий узел
+		std::unique_ptr<Node<T>> m_next;   ///< Указатель на следующий узел
 	};
 
 
-	_Node_alloc_type alloc;        ///< Управление памятью
-	Node<T>* m_head;        ///< Первый элемент списка
-	Node<T>* m_last;        ///< Последний элемент списка
+	Node_alloc_type alloc;  ///< Управление памятью
+
+	std::unique_ptr<Node<T>> m_head;        ///< Первый элемент списка
+	std::unique_ptr<Node<T>> m_last;        ///< Последний элемент списка
 
 public:
 	/// Класс итератора односвязного списка
@@ -123,14 +120,13 @@ public:
 		}
 	}
 
-	// Добавление узла в список
+	/// Добавление узла в список
 	void append( const T& t )
 	{
 		// Создаем новый узел для значения
 		// Не забудем проверить, что память удалось выделить
 		if( Node<T>* node = alloc.allocate(1)) 
 		{
-			// node->m_t = t;
 			alloc.construct(node, t);
 			node->m_next = nullptr;
 			if(m_head == nullptr)
@@ -146,6 +142,9 @@ public:
 		}
 	}
 
+	/**
+	 *
+	 */
 	Iterator<T> insert(const Iterator<T> pos, T&& value )
 	{
 		if( Node<T>* node = alloc.allocate(1)) 
