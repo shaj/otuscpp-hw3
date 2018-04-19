@@ -151,21 +151,21 @@ int main (int argc, char *argv[])
 
 
 	// BOOST_LOG_TRIVIAL(info) << "Test mylist with std::allocator";
-	// auto m3 = my::mylist<int>{};
-	// for(size_t i=0; i<10; i++)
-	// {
-	// 	m3.append(i);
-	// }
+	auto m3 = my::mylist<int>{};
+	for(size_t i=0; i<10; i++)
+	{
+		m3.append(i);
+	}
 
 	// std::generate_n( std::inserter(m3, std::begin(m3))
 	// 			   , 15
 	// 			   , [i=0]()mutable{return i++;}
 	// 			   );
 
-	// for(auto it: m3)
-	// {
-	// 	std::cout << it << std::endl;
-	// }
+	for(auto it: m3)
+	{
+		std::cout << it << std::endl;
+	}
 
 
 	// BOOST_LOG_TRIVIAL(info) << "Test mylist with logging_allocator";

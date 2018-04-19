@@ -10,7 +10,7 @@ namespace my
 {
 
 /// Шаблон класса односвязного списка
-template< typename T, typename Allocator=std::allocator<T>() >
+template< typename T, typename Allocator=std::allocator<T>>
 class mylist 
 {
 private:
@@ -31,11 +31,7 @@ public:
 	typedef Iterator<T> iterator;
 	
 
-
-    typedef typename __gnu_cxx::__alloc_traits<Allocator>::template  rebind<T>::other _Tp_alloc_type;
-    typedef __gnu_cxx::__alloc_traits<_Tp_alloc_type>   _Tp_alloc_traits;
-    typedef typename _Tp_alloc_traits::template  rebind<Node<T> >::other _Node_alloc_type;
-    typedef __gnu_cxx::__alloc_traits<_Node_alloc_type> _Node_alloc_traits;
+	typedef typename Allocator::template rebind<Node<T>>::other Node_alloc_type;
 
 private:
 
@@ -50,7 +46,7 @@ private:
 	};
 
 
-	_Node_alloc_type alloc;        ///< Управление памятью
+	Node_alloc_type alloc;  ///< Управление памятью
 	Node<T>* m_head;        ///< Первый элемент списка
 	Node<T>* m_last;        ///< Последний элемент списка
 
@@ -123,7 +119,7 @@ public:
 		}
 	}
 
-	// Добавление узла в список
+	/// Добавление узла в список
 	void append( const T& t )
 	{
 		// Создаем новый узел для значения
@@ -146,6 +142,9 @@ public:
 		}
 	}
 
+	/**
+	 *
+	 */
 	Iterator<T> insert(const Iterator<T> pos, T&& value )
 	{
 		if( Node<T>* node = alloc.allocate(1)) 
