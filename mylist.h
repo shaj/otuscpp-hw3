@@ -14,7 +14,7 @@ template< typename T, typename Allocator=std::allocator<T>>
 class mylist 
 {
 private:
-	template<typename _T>
+	template<typename U>
 	struct Node;
 
 public:
@@ -35,25 +35,50 @@ public:
 
 private:
 
-	/// Структура узла односвязного списка
-	template<typename _T>
-	struct Node 
+
+	class del_alloc
 	{
-		Node() : m_next( nullptr ) { }
-		Node( const _T& t ) : m_t( t ), m_next( nullptr ) { }
-		_T m_t;             ///< Значение узла
-		std::unique_ptr<Node<T>> m_next;   ///< Указатель на следующий узел
+	public:
+		// typedef typename del_alloc deleter_type;
+
+		void operator()(Node_alloc_type *ptr)
+		{
+			alloc.destroy(ptr);
+			alloc.deallocate(ptr, 1);
+		}
+	};
+
+	class del_nop
+	{
+	public:
+		// typedef typename del_nop deleter_type;
+
+		void operator()(Node_alloc_type *ptr)
+		{
+			
+		}
 	};
 
 
-	Node_alloc_type alloc;  ///< Управление памятью
+	/// Структура узла односвязного списка
+	template<typename U>
+	struct Node 
+	{
+		Node() : m_next( nullptr ) { }
+		Node( const U& t ) : m_t( t ), m_next( nullptr ) { }
+		U m_t;                             ///< Значение узла
+		std::unique_ptr<Node<T>, del_alloc> m_next;   ///< Указатель на следующий узел
+	};
 
-	std::unique_ptr<Node<T>> m_head;        ///< Первый элемент списка
-	std::unique_ptr<Node<T>> m_last;        ///< Последний элемент списка
+
+	Node_alloc_type alloc;                  ///< Управление памятью
+
+	std::unique_ptr<Node<T>, del_alloc> m_head;        ///< Первый элемент списка
+	std::unique_ptr<Node<T>, del_nop> m_tail;        ///< Последний элемент списка
 
 public:
 	/// Класс итератора односвязного списка
-	template<typename _T>
+	template<typename U>
 	class Iterator 
 	{
 	public:
@@ -64,7 +89,7 @@ public:
 		using reference = T&;
 		using const_reference = const T&;
 
-		Iterator( Node<_T>* node ) : m_node( node ) { }
+		Iterator( Node<U>* node ) : m_node( node ) { }
 
 		// Проверка на равенство
 		bool operator==( const Iterator& other ) const 
@@ -97,7 +122,7 @@ public:
 		{
 			if( m_node ) 
 			{
-				m_node = m_node->m_next;
+				m_node = m_node->m_next.get();
 			} // Иначе достигнут конец списка. Уместно возбудить исключение
 		}
 
@@ -109,7 +134,7 @@ public:
 public:
 
 	mylist() noexcept
-	: alloc(), m_head(), m_last()
+	: alloc()
 	{ }
 
 	~mylist()
@@ -128,17 +153,18 @@ public:
 		if( Node<T>* node = alloc.allocate(1)) 
 		{
 			alloc.construct(node, t);
-			node->m_next = nullptr;
-			if(m_head == nullptr)
+			// node->m_next = nullptr;
+			if(m_head.get() == nullptr)
 			{
-				m_head = node;
-				m_last = node;
+				m_head.reset(node);
+				m_tail.reset(node);
 			}
 			else
 			{
-				m_last->m_next = node;
-				m_last = node;
+				m_tail->m_next.reset(node);
+				m_tail.reset(node);
 			}
+
 		}
 	}
 
@@ -150,16 +176,16 @@ public:
 		if( Node<T>* node = alloc.allocate(1)) 
 		{
 			alloc.construct(node, std::move(value));
-			node->m_next = nullptr;
-			if(m_head == nullptr)
+			// node->m_next = nullptr;
+			if(m_head.get() == nullptr)
 			{
-				m_head = node;
-				m_last = node;
+				m_head.reset(node);
+				m_tail.reset(node);
 			}
 			else
 			{
-				m_last->m_next = node;
-				m_last = node;
+				m_tail->m_next.reset(node);
+				m_tail.reset(node);
 			}
 			return Iterator<T>(node);
 		}
@@ -169,15 +195,15 @@ public:
 	// Удаление первого узла из списка
 	void remove()
 	{
-		if(m_head) 
+		if(m_head.get() != nullptr) 
 		{ // Если список не пуст:
 			// Сохраняем указатель на второй узел, который станет новым головным элементом
-			Node<T>* newHead = m_head->m_next;
+			Node<T>* newHead = m_head->m_next.get();
 			// Освобождаем память, выделенную для удаляемого головного элемента
-			alloc.destroy(m_head);
-			alloc.deallocate(m_head, 1);
+			// alloc.destroy(m_head);
+			// alloc.deallocate(m_head, 1);
 			// Назначаем новый головной элемент
-			m_head = newHead;
+			m_head.reset(newHead);
 		}
 	}
 	
@@ -188,7 +214,7 @@ public:
 	Iterator<T> begin() const
 	{
 		// Итератор пойдет от головного элемента...
-		return Iterator<T>( m_head );
+		return Iterator<T>( m_head.get() );
 	}
 
 	/// Получить итератор на конец списка
