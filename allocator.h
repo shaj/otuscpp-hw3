@@ -66,6 +66,7 @@ public:
 	void deallocate(T *p, std::size_t n)
 	{
 		// BOOST_LOG_TRIVIAL(trace) << __PRETTY_FUNCTION__ << "[n = " << n << "]";
+		std::cout << __PRETTY_FUNCTION__ << "[n = " << n << "]" << std::endl;
 	}
 
 	template<typename U, typename ...Args>
@@ -78,6 +79,7 @@ public:
 	void destroy(T *p)
 	{
 		// BOOST_LOG_TRIVIAL(trace) << __PRETTY_FUNCTION__;
+		std::cout << __PRETTY_FUNCTION__ << std::endl;
 		p->~T();
 	}
 };

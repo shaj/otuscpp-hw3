@@ -35,16 +35,20 @@ public:
 
 private:
 
-
 	class del_alloc
 	{
+	private:
+		Node_alloc_type *alloc;
+
+		del_alloc(){};
 	public:
 		// typedef typename del_alloc deleter_type;
+		del_alloc(Node_alloc_type *a): alloc(a) {}
 
-		void operator()(Node_alloc_type *ptr)
+		void operator()(Node<T> *ptr)
 		{
-			alloc.destroy(ptr);
-			alloc.deallocate(ptr, 1);
+			alloc->destroy(ptr);
+			alloc->deallocate(ptr, 1);
 		}
 	};
 
@@ -53,7 +57,7 @@ private:
 	public:
 		// typedef typename del_nop deleter_type;
 
-		void operator()(Node_alloc_type *ptr)
+		void operator()(Node<T> *ptr)
 		{
 			
 		}
@@ -64,17 +68,22 @@ private:
 	template<typename U>
 	struct Node 
 	{
-		Node() : m_next( nullptr ) { }
-		Node( const U& t ) : m_t( t ), m_next( nullptr ) { }
-		U m_t;                             ///< Значение узла
-		std::unique_ptr<Node<T>, del_alloc> m_next;   ///< Указатель на следующий узел
+	private:
+		Node_alloc_type *alloc;
+
+		Node() {}
+	public:
+		Node(Node_alloc_type *a): alloc(a), m_next( nullptr, a ) { }
+		Node( const U& t ) : m_t( t ), m_next( nullptr, alloc ) { }
+		U m_t;                                                         ///< Значение узла
+		std::unique_ptr<Node<U>, del_alloc> m_next {nullptr, alloc};   ///< Указатель на следующий узел
 	};
 
 
-	Node_alloc_type alloc;                  ///< Управление памятью
+	Node_alloc_type alloc;                                             ///< Управление памятью
 
-	std::unique_ptr<Node<T>, del_alloc> m_head;        ///< Первый элемент списка
-	std::unique_ptr<Node<T>, del_nop> m_tail;        ///< Последний элемент списка
+	std::unique_ptr<Node<T>, del_alloc> m_head {nullptr, &alloc};      ///< Первый элемент списка
+	std::unique_ptr<Node<T>, del_nop> m_tail {nullptr};                ///< Последний элемент списка
 
 public:
 	/// Класс итератора односвязного списка
@@ -153,7 +162,6 @@ public:
 		if( Node<T>* node = alloc.allocate(1)) 
 		{
 			alloc.construct(node, t);
-			// node->m_next = nullptr;
 			if(m_head.get() == nullptr)
 			{
 				m_head.reset(node);
@@ -176,7 +184,6 @@ public:
 		if( Node<T>* node = alloc.allocate(1)) 
 		{
 			alloc.construct(node, std::move(value));
-			// node->m_next = nullptr;
 			if(m_head.get() == nullptr)
 			{
 				m_head.reset(node);
@@ -192,16 +199,13 @@ public:
 		return Iterator<T>(nullptr);
 	}
 	
-	// Удаление первого узла из списка
+	/// Удаление первого узла из списка
 	void remove()
 	{
 		if(m_head.get() != nullptr) 
 		{ // Если список не пуст:
 			// Сохраняем указатель на второй узел, который станет новым головным элементом
-			Node<T>* newHead = m_head->m_next.get();
-			// Освобождаем память, выделенную для удаляемого головного элемента
-			// alloc.destroy(m_head);
-			// alloc.deallocate(m_head, 1);
+			Node<T>* newHead = m_tail->m_next.get();
 			// Назначаем новый головной элемент
 			m_head.reset(newHead);
 		}

@@ -151,7 +151,7 @@ int main (int argc, char *argv[])
 
 
 	// BOOST_LOG_TRIVIAL(info) << "Test mylist with std::allocator";
-	auto m3 = my::mylist<int>{};
+	my::mylist<int> m3;
 	for(size_t i=0; i<10; i++)
 	{
 		m3.append(i);
@@ -187,6 +187,14 @@ int main (int argc, char *argv[])
 	}
 
 
+	std::cout << "========== my::mylist::remove  START" << std::endl;
+
+	for(size_t i=0; i<10; i++)
+	{
+		m4.remove();
+	}
+
+	std::cout << "========== my::mylist::remove  END" << std::endl;
 
 	std::cout << "========== my::alloc_counter=" << my::alloc_counter << std::endl;
 	return 0;

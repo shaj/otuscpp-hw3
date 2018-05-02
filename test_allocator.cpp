@@ -65,4 +65,47 @@ BOOST_AUTO_TEST_CASE(test_main)
 
 }
 
+/// Проверка освобождения памяти
+BOOST_AUTO_TEST_CASE(test_memory_deallocate_1)
+{
+
+	std::size_t alloc_cnt {my::alloc_counter};
+
+	// my::mylist<int, my::logging_allocator<int, 10>> m1;
+	auto pm1 = new (my::mylist<int, my::logging_allocator<int, 10>>);
+	for(size_t i=0; i<100; i++)
+	{
+		pm1->append(i);
+	}
+
+	delete pm1;
+
+	BOOST_CHECK(my::alloc_counter == alloc_cnt);
+
+}
+
+
+// BOOST_AUTO_TEST_CASE(test_memory_deallocate_2)
+// {
+
+// 	my::mylist<int, my::logging_allocator<int, 10>> m1;
+
+// 	std::size_t alloc_cnt {my::alloc_counter};
+
+// 	for(size_t i=0; i<100; i++)
+// 	{
+// 		m1.append(i);
+// 	}
+
+// 	for(size_t i=0; i<100; i++)
+// 	{
+// 		m1.remove();
+// 	}
+
+
+// 	BOOST_CHECK(my::alloc_counter == alloc_cnt);
+
+// }
+
+
 BOOST_AUTO_TEST_SUITE_END()
