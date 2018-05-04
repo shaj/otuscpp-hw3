@@ -1,7 +1,7 @@
 var searchData=
 [
-  ['_5fnode_5falloc_5ftraits',['_Node_alloc_traits',['../classmy_1_1mylist.html#ad80c0b3014b689ba329a10946e54171f',1,'my::mylist']]],
-  ['_5fnode_5falloc_5ftype',['_Node_alloc_type',['../classmy_1_1mylist.html#a086f45938b2afe6813dde18f87b89460',1,'my::mylist']]],
-  ['_5ftp_5falloc_5ftraits',['_Tp_alloc_traits',['../classmy_1_1mylist.html#a98e69c40a5ec191cf71dc9a000ac4b4e',1,'my::mylist']]],
-  ['_5ftp_5falloc_5ftype',['_Tp_alloc_type',['../classmy_1_1mylist.html#a70438cde6f047a4b390e5d14fed9a0f5',1,'my::mylist']]]
+  ['alloc_5fcounter',['alloc_counter',['../namespacemy.html#a7391a48baf413653a3589c240f7b2769',1,'my']]],
+  ['allocate',['allocate',['../classmy_1_1logging__allocator.html#abf0463bd4e206b6279115f77a39f9589',1,'my::logging_allocator']]],
+  ['allocator_2eh',['allocator.h',['../allocator_8h.html',1,'']]],
+  ['append',['append',['../classmy_1_1mylist.html#a05987b8e48795858e66d8f3f66b14de2',1,'my::mylist']]]
 ];

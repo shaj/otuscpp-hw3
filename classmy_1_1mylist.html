@@ -121,23 +121,9 @@ var searchBox = new SearchBox("searchBox", "search",false,'Поиск');
 <tr class="separator:a77a9a5f2458eccac8946ccbc1ba0a999"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:addabb71bb0842ab456e94902384490ac"><td class="memItemLeft" align="right" valign="top">typedef <a class="el" href="classmy_1_1mylist_1_1Iterator.html">Iterator</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmy_1_1mylist.html#addabb71bb0842ab456e94902384490ac">iterator</a></td></tr>
 <tr class="separator:addabb71bb0842ab456e94902384490ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a70438cde6f047a4b390e5d14fed9a0f5"><td class="memItemLeft" align="right" valign="top">typedef <br class="typebreak"/>
-__gnu_cxx::__alloc_traits<br class="typebreak"/>
-&lt; Allocator &gt;::template rebind<br class="typebreak"/>
-&lt; T &gt;::other&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmy_1_1mylist.html#a70438cde6f047a4b390e5d14fed9a0f5">_Tp_alloc_type</a></td></tr>
-<tr class="separator:a70438cde6f047a4b390e5d14fed9a0f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a98e69c40a5ec191cf71dc9a000ac4b4e"><td class="memItemLeft" align="right" valign="top">typedef <br class="typebreak"/>
-__gnu_cxx::__alloc_traits<br class="typebreak"/>
-&lt; <a class="el" href="classmy_1_1mylist.html#a70438cde6f047a4b390e5d14fed9a0f5">_Tp_alloc_type</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmy_1_1mylist.html#a98e69c40a5ec191cf71dc9a000ac4b4e">_Tp_alloc_traits</a></td></tr>
-<tr class="separator:a98e69c40a5ec191cf71dc9a000ac4b4e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a086f45938b2afe6813dde18f87b89460"><td class="memItemLeft" align="right" valign="top">typedef <br class="typebreak"/>
-_Tp_alloc_traits::template <br class="typebreak"/>
-rebind&lt; Node&lt; T &gt; &gt;::other&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmy_1_1mylist.html#a086f45938b2afe6813dde18f87b89460">_Node_alloc_type</a></td></tr>
-<tr class="separator:a086f45938b2afe6813dde18f87b89460"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad80c0b3014b689ba329a10946e54171f"><td class="memItemLeft" align="right" valign="top">typedef <br class="typebreak"/>
-__gnu_cxx::__alloc_traits<br class="typebreak"/>
-&lt; <a class="el" href="classmy_1_1mylist.html#a086f45938b2afe6813dde18f87b89460">_Node_alloc_type</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmy_1_1mylist.html#ad80c0b3014b689ba329a10946e54171f">_Node_alloc_traits</a></td></tr>
-<tr class="separator:ad80c0b3014b689ba329a10946e54171f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae28faac6fcb50c613a5284b9a22f5754"><td class="memItemLeft" align="right" valign="top">typedef Allocator::template <br class="typebreak"/>
+rebind&lt; Node&lt; T &gt; &gt;::other&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmy_1_1mylist.html#ae28faac6fcb50c613a5284b9a22f5754">Node_alloc_type</a></td></tr>
+<tr class="separator:ae28faac6fcb50c613a5284b9a22f5754"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Открытые члены</h2></td></tr>
@@ -146,10 +132,12 @@ __gnu_cxx::__alloc_traits<br class="typebreak"/>
 <tr class="memitem:a2d999505099ab6fb737ea328e0595c7a"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmy_1_1mylist.html#a2d999505099ab6fb737ea328e0595c7a">~mylist</a> ()</td></tr>
 <tr class="separator:a2d999505099ab6fb737ea328e0595c7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a05987b8e48795858e66d8f3f66b14de2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmy_1_1mylist.html#a05987b8e48795858e66d8f3f66b14de2">append</a> (const T &amp;t)</td></tr>
+<tr class="memdesc:a05987b8e48795858e66d8f3f66b14de2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Добавление узла в список  <a href="#a05987b8e48795858e66d8f3f66b14de2">Подробнее...</a><br/></td></tr>
 <tr class="separator:a05987b8e48795858e66d8f3f66b14de2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9256fe6378310d939083fac32549e1e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmy_1_1mylist_1_1Iterator.html">Iterator</a>&lt; T &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmy_1_1mylist.html#a9256fe6378310d939083fac32549e1e8">insert</a> (const <a class="el" href="classmy_1_1mylist_1_1Iterator.html">Iterator</a>&lt; T &gt; pos, T &amp;&amp;value)</td></tr>
 <tr class="separator:a9256fe6378310d939083fac32549e1e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac108c1f3e17f977da1b54b4fa7f534fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmy_1_1mylist.html#ac108c1f3e17f977da1b54b4fa7f534fa">remove</a> ()</td></tr>
+<tr class="memdesc:ac108c1f3e17f977da1b54b4fa7f534fa"><td class="mdescLeft">&#160;</td><td class="mdescRight">Удаление первого узла из списка  <a href="#ac108c1f3e17f977da1b54b4fa7f534fa">Подробнее...</a><br/></td></tr>
 <tr class="separator:ac108c1f3e17f977da1b54b4fa7f534fa"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7c39ca50014998b0ae6bfce768851b14"><td class="memItemLeft" align="right" valign="top">T&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmy_1_1mylist.html#a7c39ca50014998b0ae6bfce768851b14">head</a> () const </td></tr>
 <tr class="memdesc:a7c39ca50014998b0ae6bfce768851b14"><td class="mdescLeft">&#160;</td><td class="mdescRight">Получить головной элемент списка  <a href="#a7c39ca50014998b0ae6bfce768851b14">Подробнее...</a><br/></td></tr>
@@ -162,72 +150,16 @@ __gnu_cxx::__alloc_traits<br class="typebreak"/>
 <tr class="separator:a99a3f17fbcf0579e92cde52d92b84b81"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Подробное описание</h2>
-<div class="textblock"><h3>template&lt;typename T, typename Allocator = std::allocator&lt;T&gt;()&gt;<br/>
+<div class="textblock"><h3>template&lt;typename T, typename Allocator = std::allocator&lt;T&gt;&gt;<br/>
 class my::mylist&lt; T, Allocator &gt;</h3>
 
 <p>Шаблон класса односвязного списка </p>
 </div><h2 class="groupheader">Определения типов</h2>
-<a class="anchor" id="ad80c0b3014b689ba329a10946e54171f"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef __gnu_cxx::__alloc_traits&lt;<a class="el" href="classmy_1_1mylist.html#a086f45938b2afe6813dde18f87b89460">_Node_alloc_type</a>&gt; <a class="el" href="classmy_1_1mylist.html">my::mylist</a>&lt; T, Allocator &gt;::<a class="el" href="classmy_1_1mylist.html#ad80c0b3014b689ba329a10946e54171f">_Node_alloc_traits</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a086f45938b2afe6813dde18f87b89460"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef _Tp_alloc_traits::template rebind&lt;Node&lt;T&gt; &gt;::other <a class="el" href="classmy_1_1mylist.html">my::mylist</a>&lt; T, Allocator &gt;::<a class="el" href="classmy_1_1mylist.html#a086f45938b2afe6813dde18f87b89460">_Node_alloc_type</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a98e69c40a5ec191cf71dc9a000ac4b4e"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef __gnu_cxx::__alloc_traits&lt;<a class="el" href="classmy_1_1mylist.html#a70438cde6f047a4b390e5d14fed9a0f5">_Tp_alloc_type</a>&gt; <a class="el" href="classmy_1_1mylist.html">my::mylist</a>&lt; T, Allocator &gt;::<a class="el" href="classmy_1_1mylist.html#a98e69c40a5ec191cf71dc9a000ac4b4e">_Tp_alloc_traits</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a70438cde6f047a4b390e5d14fed9a0f5"></a>
-<div class="memitem">
-<div class="memproto">
-<div class="memtemplate">
-template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
-      <table class="memname">
-        <tr>
-          <td class="memname">typedef __gnu_cxx::__alloc_traits&lt;Allocator&gt;::template rebind&lt;T&gt;::other <a class="el" href="classmy_1_1mylist.html">my::mylist</a>&lt; T, Allocator &gt;::<a class="el" href="classmy_1_1mylist.html#a70438cde6f047a4b390e5d14fed9a0f5">_Tp_alloc_type</a></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a class="anchor" id="a88e22694abfec10e2baef8aee9c921cc"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="classmy_1_1mylist.html">my::mylist</a>&lt; T, Allocator &gt;::<a class="el" href="classmy_1_1mylist.html#a88e22694abfec10e2baef8aee9c921cc">const_pointer</a> =  const T*</td>
@@ -241,7 +173,7 @@ template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </d
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="classmy_1_1mylist.html">my::mylist</a>&lt; T, Allocator &gt;::<a class="el" href="classmy_1_1mylist.html#a77a9a5f2458eccac8946ccbc1ba0a999">const_reference</a> =  const T&amp;</td>
@@ -255,10 +187,24 @@ template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </d
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">typedef <a class="el" href="classmy_1_1mylist_1_1Iterator.html">Iterator</a>&lt;T&gt; <a class="el" href="classmy_1_1mylist.html">my::mylist</a>&lt; T, Allocator &gt;::<a class="el" href="classmy_1_1mylist.html#addabb71bb0842ab456e94902384490ac">iterator</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ae28faac6fcb50c613a5284b9a22f5754"></a>
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;&gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef Allocator::template rebind&lt;Node&lt;T&gt; &gt;::other <a class="el" href="classmy_1_1mylist.html">my::mylist</a>&lt; T, Allocator &gt;::<a class="el" href="classmy_1_1mylist.html#ae28faac6fcb50c613a5284b9a22f5754">Node_alloc_type</a></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -269,7 +215,7 @@ template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </d
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="classmy_1_1mylist.html">my::mylist</a>&lt; T, Allocator &gt;::<a class="el" href="classmy_1_1mylist.html#a8a5c0d1d02235a372da50e70d76f295b">pointer</a> =  T*</td>
@@ -283,7 +229,7 @@ template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </d
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="classmy_1_1mylist.html">my::mylist</a>&lt; T, Allocator &gt;::<a class="el" href="classmy_1_1mylist.html#a33edc9602f216603fb467f8402be413f">reference</a> =  T&amp;</td>
@@ -297,7 +243,7 @@ template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </d
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;&gt; </div>
       <table class="memname">
         <tr>
           <td class="memname">using <a class="el" href="classmy_1_1mylist.html">my::mylist</a>&lt; T, Allocator &gt;::<a class="el" href="classmy_1_1mylist.html#aa70a4d762d36c8e988026e551973901f">value_type</a> =  T</td>
@@ -312,7 +258,7 @@ template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </d
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -337,7 +283,7 @@ template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </d
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -363,7 +309,7 @@ template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </d
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -383,13 +329,15 @@ template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </d
 </table>
 </div><div class="memdoc">
 
+<p>Добавление узла в список </p>
+
 </div>
 </div>
 <a class="anchor" id="a8e083c175f1e5c8eab092114b692fbf0"></a>
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -416,7 +364,7 @@ template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </d
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -443,7 +391,7 @@ template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </d
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -470,7 +418,7 @@ template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </d
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -499,6 +447,7 @@ template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </d
   </tr>
 </table>
 </div><div class="memdoc">
+<p>Функция для std::generate_n </p>
 
 </div>
 </div>
@@ -506,7 +455,7 @@ template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </d
 <div class="memitem">
 <div class="memproto">
 <div class="memtemplate">
-template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </div>
+template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;&gt; </div>
 <table class="mlabels">
   <tr>
   <td class="mlabels-left">
@@ -524,6 +473,8 @@ template&lt;typename T , typename Allocator  = std::allocator&lt;T&gt;()&gt; </d
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Удаление первого узла из списка </p>
 
 </div>
 </div>

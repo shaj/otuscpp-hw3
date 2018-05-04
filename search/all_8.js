@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['insert',['insert',['../classmy_1_1mylist.html#a9256fe6378310d939083fac32549e1e8',1,'my::mylist']]],
-  ['iterator',['iterator',['../classmy_1_1mylist.html#addabb71bb0842ab456e94902384490ac',1,'my::mylist::iterator()'],['../classmy_1_1mylist_1_1Iterator.html#a7e2bf89c6adb65e36a1407fb16751d24',1,'my::mylist::Iterator::Iterator()']]],
-  ['iterator',['Iterator',['../classmy_1_1mylist_1_1Iterator.html',1,'my::mylist']]]
+  ['logging_5fallocator',['logging_allocator',['../classmy_1_1logging__allocator.html',1,'my']]],
+  ['logging_5fallocator',['logging_allocator',['../classmy_1_1logging__allocator.html#ae4c24dfabc3cc4289ef8f834b755d244',1,'my::logging_allocator::logging_allocator()=default'],['../classmy_1_1logging__allocator.html#a07cea247cdfb33e7626672df27d83bd2',1,'my::logging_allocator::logging_allocator(const logging_allocator&lt; U, P &gt; &amp;other)']]]
 ];

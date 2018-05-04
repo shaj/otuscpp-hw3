@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['deallocate',['deallocate',['../classmy_1_1logging__allocator.html#afc797de1b1c78f87264c6703cbe26f75',1,'my::logging_allocator']]],
-  ['destroy',['destroy',['../classmy_1_1logging__allocator.html#ac00d48c40820c59a53ca07881b98cc54',1,'my::logging_allocator']]]
+  ['end',['end',['../classmy_1_1mylist.html#a99a3f17fbcf0579e92cde52d92b84b81',1,'my::mylist']]]
 ];
