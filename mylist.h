@@ -14,7 +14,7 @@ template< typename T, typename Allocator=std::allocator<T>>
 class mylist 
 {
 private:
-	template<typename _T>
+	template<typename U>
 	struct Node;
 
 public:
@@ -35,24 +35,52 @@ public:
 
 private:
 
-	/// Структура узла односвязного списка
-	template<typename _T>
-	struct Node 
+	class del_alloc
 	{
-		Node() : m_next( nullptr ) { }
-		Node( const _T& t ) : m_t( t ), m_next( nullptr ) { }
-		_T m_t;             ///< Значение узла
-		Node<_T>* m_next;   ///< Указатель на следующий узел
+	private:
+		Node_alloc_type *alloc;
+		del_alloc(){};
+	public:
+		del_alloc(Node_alloc_type *a): alloc(a) {}
+
+		void operator()(Node<T> *ptr)
+		{
+			alloc->destroy(ptr);
+			alloc->deallocate(ptr, 1);
+		}
+	};
+
+	class del_nop
+	{
+	public:
+		void operator()(Node<T> *ptr){}
 	};
 
 
-	Node_alloc_type alloc;  ///< Управление памятью
-	Node<T>* m_head;        ///< Первый элемент списка
-	Node<T>* m_last;        ///< Последний элемент списка
+	/// Структура узла односвязного списка
+	template<typename U>
+	struct Node 
+	{
+	private:
+		Node_alloc_type *alloc;
+
+		Node() {}
+	public:
+		Node(Node_alloc_type *a): alloc(a), m_next( nullptr, a ) { }
+		Node( const U& t ) : m_t( t ), m_next( nullptr, alloc ) { }
+		U m_t;                                                         ///< Значение узла
+		std::unique_ptr<Node<U>, del_alloc> m_next {nullptr, alloc};   ///< Указатель на следующий узел
+	};
+
+
+	Node_alloc_type alloc;                                             ///< Управление памятью
+
+	std::unique_ptr<Node<T>, del_alloc> m_head {nullptr, &alloc};      ///< Первый элемент списка
+	std::unique_ptr<Node<T>, del_nop> m_tail {nullptr};                ///< Последний элемент списка
 
 public:
 	/// Класс итератора односвязного списка
-	template<typename _T>
+	template<typename U>
 	class Iterator 
 	{
 	public:
@@ -63,7 +91,7 @@ public:
 		using reference = T&;
 		using const_reference = const T&;
 
-		Iterator( Node<_T>* node ) : m_node( node ) { }
+		Iterator( Node<U>* node ) : m_node( node ) { }
 
 		// Проверка на равенство
 		bool operator==( const Iterator& other ) const 
@@ -96,7 +124,7 @@ public:
 		{
 			if( m_node ) 
 			{
-				m_node = m_node->m_next;
+				m_node = m_node->m_next.get();
 			} // Иначе достигнут конец списка. Уместно возбудить исключение
 		}
 
@@ -108,7 +136,7 @@ public:
 public:
 
 	mylist() noexcept
-	: alloc(), m_head(), m_last()
+	: alloc()
 	{ }
 
 	~mylist()
@@ -122,62 +150,42 @@ public:
 	/// Добавление узла в список
 	void append( const T& t )
 	{
-		// Создаем новый узел для значения
-		// Не забудем проверить, что память удалось выделить
 		if( Node<T>* node = alloc.allocate(1)) 
 		{
-			// node->m_t = t;
 			alloc.construct(node, t);
-			node->m_next = nullptr;
-			if(m_head == nullptr)
+			if(m_head.get() == nullptr)
 			{
-				m_head = node;
-				m_last = node;
+				m_head.reset(node);
+				m_tail.reset(node);
 			}
 			else
 			{
-				m_last->m_next = node;
-				m_last = node;
+				m_tail->m_next.reset(node);
+				m_tail.release();
+				m_tail.reset(node);
 			}
+
 		}
 	}
 
 	/**
-	 *
+	 * Функция для std::generate_n
 	 */
 	Iterator<T> insert(const Iterator<T> pos, T&& value )
 	{
-		if( Node<T>* node = alloc.allocate(1)) 
-		{
-			alloc.construct(node, std::move(value));
-			node->m_next = nullptr;
-			if(m_head == nullptr)
-			{
-				m_head = node;
-				m_last = node;
-			}
-			else
-			{
-				m_last->m_next = node;
-				m_last = node;
-			}
-			return Iterator<T>(node);
-		}
-		return Iterator<T>(nullptr);
+		append(value);
+		return Iterator<T>(m_tail.get());
 	}
 	
-	// Удаление первого узла из списка
+	/// Удаление первого узла из списка
 	void remove()
 	{
-		if(m_head) 
+		if(m_head.get() != nullptr) 
 		{ // Если список не пуст:
 			// Сохраняем указатель на второй узел, который станет новым головным элементом
-			Node<T>* newHead = m_head->m_next;
-			// Освобождаем память, выделенную для удаляемого головного элемента
-			alloc.destroy(m_head);
-			alloc.deallocate(m_head, 1);
+			Node<T>* newHead = m_tail->m_next.get();
 			// Назначаем новый головной элемент
-			m_head = newHead;
+			m_head.reset(newHead);
 		}
 	}
 	
@@ -188,7 +196,7 @@ public:
 	Iterator<T> begin() const
 	{
 		// Итератор пойдет от головного элемента...
-		return Iterator<T>( m_head );
+		return Iterator<T>( m_head.get() );
 	}
 
 	/// Получить итератор на конец списка
