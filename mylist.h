@@ -19,7 +19,7 @@ private:
 
 public:
 
-	template<typename _T>
+	template<typename U>
 	class Iterator;
 
 
