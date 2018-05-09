@@ -157,10 +157,10 @@ int main (int argc, char *argv[])
 		m3.append(i);
 	}
 
-	// std::generate_n( std::inserter(m3, std::begin(m3))
-	// 			   , 15
-	// 			   , [i=0]()mutable{return i++;}
-	// 			   );
+	std::generate_n( std::inserter(m3, std::begin(m3))
+				   , 15
+				   , [i=0]()mutable{return i++;}
+				   );
 
 	for(auto it: m3)
 	{
@@ -176,25 +176,15 @@ int main (int argc, char *argv[])
 		m4.append(i);
 	}
 
-	// std::generate_n( std::inserter(m4, std::begin(m4))
-	//                , 15
-	//                , [i=0]()mutable{return i++;}
-	//                );
+	std::generate_n( std::inserter(m4, std::begin(m4))
+	               , 15
+	               , [i=0]()mutable{return i++;}
+	               );
 
 	for(auto it: m4)
 	{
 		std::cout << it << std::endl;
 	}
-
-
-	std::cout << "========== my::mylist::remove  START" << std::endl;
-
-	for(size_t i=0; i<10; i++)
-	{
-		m4.remove();
-	}
-
-	std::cout << "========== my::mylist::remove  END" << std::endl;
 
 	std::cout << "========== my::alloc_counter=" << my::alloc_counter << std::endl;
 	return 0;

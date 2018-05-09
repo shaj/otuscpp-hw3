@@ -39,10 +39,8 @@ private:
 	{
 	private:
 		Node_alloc_type *alloc;
-
 		del_alloc(){};
 	public:
-		// typedef typename del_alloc deleter_type;
 		del_alloc(Node_alloc_type *a): alloc(a) {}
 
 		void operator()(Node<T> *ptr)
@@ -55,12 +53,7 @@ private:
 	class del_nop
 	{
 	public:
-		// typedef typename del_nop deleter_type;
-
-		void operator()(Node<T> *ptr)
-		{
-			
-		}
+		void operator()(Node<T> *ptr){}
 	};
 
 
@@ -157,8 +150,6 @@ public:
 	/// Добавление узла в список
 	void append( const T& t )
 	{
-		// Создаем новый узел для значения
-		// Не забудем проверить, что память удалось выделить
 		if( Node<T>* node = alloc.allocate(1)) 
 		{
 			alloc.construct(node, t);
@@ -170,6 +161,7 @@ public:
 			else
 			{
 				m_tail->m_next.reset(node);
+				m_tail.release();
 				m_tail.reset(node);
 			}
 
@@ -177,26 +169,12 @@ public:
 	}
 
 	/**
-	 *
+	 * Функция для std::generate_n
 	 */
 	Iterator<T> insert(const Iterator<T> pos, T&& value )
 	{
-		if( Node<T>* node = alloc.allocate(1)) 
-		{
-			alloc.construct(node, std::move(value));
-			if(m_head.get() == nullptr)
-			{
-				m_head.reset(node);
-				m_tail.reset(node);
-			}
-			else
-			{
-				m_tail->m_next.reset(node);
-				m_tail.reset(node);
-			}
-			return Iterator<T>(node);
-		}
-		return Iterator<T>(nullptr);
+		append(value);
+		return Iterator<T>(m_tail.get());
 	}
 	
 	/// Удаление первого узла из списка
