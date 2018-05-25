@@ -85,27 +85,4 @@ BOOST_AUTO_TEST_CASE(test_memory_deallocate_1)
 }
 
 
-// BOOST_AUTO_TEST_CASE(test_memory_deallocate_2)
-// {
-
-// 	my::mylist<int, my::logging_allocator<int, 10>> m1;
-
-// 	std::size_t alloc_cnt {my::alloc_counter};
-
-// 	for(size_t i=0; i<100; i++)
-// 	{
-// 		m1.append(i);
-// 	}
-
-// 	for(size_t i=0; i<100; i++)
-// 	{
-// 		m1.remove();
-// 	}
-
-
-// 	BOOST_CHECK(my::alloc_counter == alloc_cnt);
-
-// }
-
-
 BOOST_AUTO_TEST_SUITE_END()
